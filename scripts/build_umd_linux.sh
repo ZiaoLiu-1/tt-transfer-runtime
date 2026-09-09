@@ -35,7 +35,7 @@ python3 scripts/fetch_upstream.py
   -DCMAKE_MAKE_PROGRAM="$runtime_ninja" \
   -DCMAKE_BUILD_TYPE=Release -DTT_TRANSFER_WITH_UMD=ON \
   -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
-  -DCMAKE_CXX_FLAGS="-isystem $runtime_prefix/include" \
+  -DCMAKE_CXX_FLAGS="-isystem $runtime_prefix/include -isystem $runtime_prefix/include/aarch64-linux-gnu" \
   -DCMAKE_SHARED_LINKER_FLAGS="-L$runtime_prefix/lib/aarch64-linux-gnu -Wl,-rpath,$runtime_prefix/lib/aarch64-linux-gnu" \
   -DCMAKE_EXE_LINKER_FLAGS="-L$runtime_prefix/lib/aarch64-linux-gnu -Wl,-rpath,$runtime_prefix/lib/aarch64-linux-gnu"
 "$runtime_cmake" --build build-umd --target umd_demo allocator_examples --parallel 2

@@ -18,4 +18,6 @@ Final host matrix now passes 11/11 in all three modes, with matching final test-
 
 GitHub repository created and read back as private and empty: https://github.com/ZiaoLiu-1/tt-transfer-runtime. No existing repository was overwritten.
 
+Host implementation checkpoint `4f2c85195c75696493d75725f5338fe1d3799794` pushed and remote main read back equal. Coordinator independently verified its ten host source hashes and accepted host/test scope only. UMD bootstrap then received a narrow multiarch hwloc include-path fix based on Kernel's actual configure/build error; shell syntax passed, Runtime Linux execution still pending.
+
 Pending: actual UMD/allocator build and ttsim readback, final documentation/evidence, private push and coordinator handoff.

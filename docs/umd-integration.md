@@ -17,6 +17,9 @@ python3 scripts/run_umd.py build-umd/umd_demo third_party/ttsim/libttsim_wh_aarc
 
 Requires Linux ARM64, CMake >=3.25, a C++20 compiler, Ninja, and libhwloc headers
 and library. UMD's dependencies are fetched by its pinned CMake configuration.
+`bash scripts/build_umd_linux.sh` provides an isolated Ubuntu 22.04 bootstrap
+with pinned CMake/Ninja wheels and hwloc packages. The multiarch hwloc generated
+header directory (`include/aarch64-linux-gnu`) is included alongside `include`.
 Disable unrelated UMD tools, tests, Python, RDMA, JTAG, Tracy, and emulation.
 Each `run_umd.py` output directory must be new to preserve previous raw evidence.
 The coordinated server also requires the shared build lock before downloads,
@@ -45,6 +48,12 @@ They include software and thread costs. They are not PCIe, NoC, DRAM bandwidth,
 Tensix execution latency or silicon performance. At this exact UMD commit,
 `SimulationChip::l1_membar` is empty: the adapter calls the API but simulator
 readback cannot establish hardware memory-barrier semantics.
+
+The runner's seven process-classifier regression cases are independently runnable
+with `python3 tests/test_umd_runner.py`. They deliberately launch synthetic small
+programs to check successful marker parsing, startup errors, nonzero exits,
+signals, timeouts, mismatch and incomplete output. Their log is
+`results/synthetic-runner-tests.log`; **actual UMD executions in that log: zero**.
 
 ## Allocator reading exercise（中文）
 
