@@ -125,7 +125,8 @@
     },
     "python_syntax": "pass",
     "shell_syntax_exit": 0,
-    "diff_check_exit": 0
+    "diff_check_exit": 0,
+    "diff_check_scope": "Implementation and documentation: git diff HEAD^ HEAD --check -- . :!results/**. Raw imported CSV/logs retain their original CRLF or trailing whitespace to preserve hashes."
   },
   "synthetic_test_sha256": "d3c920c74e45c657b9e19518b8bd63a8337c79a1959969fda7041efa39ee4203",
   "synthetic_log_sha256": "5a392fcd03bc8bb042f899a5ef0cc3eeda450f356ee5f38aaed09424f96a52e3"

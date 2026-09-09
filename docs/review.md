@@ -17,3 +17,5 @@ That reviewer also found a race in the external runner: the process could exit b
 The harvesting warning is retained in all raw simulator output. Claims are limited to the selected `t1-1` core's L1 readback and do not extend to topology, silicon barriers or device timing. Authorship and learner mastery are explicitly separate from engineering verification.
 
 Final independent review found no blocking gap: all five final processes passed, all 17 measured local source hashes and 45 imported file hashes matched, and all 23 post-run source/artifact checks passed. CPU and simulator medians were independently recalculated from raw CSV. The final repository settings readback records PRIVATE visibility, disabled Actions and zero workflow runs.
+
+Whitespace verification applies to implementation and documentation. Imported raw CSV and build logs retain CRLF, trailing spaces and terminal blank lines from their producers; full-result whitespace checks report these expected findings. Their bytes are preserved to keep import hashes valid.
