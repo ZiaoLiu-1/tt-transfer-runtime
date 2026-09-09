@@ -2,7 +2,7 @@
 
 A compact C++20 host runtime that serializes transfers from multiple producers through a bounded FIFO and one backend owner. It demonstrates ownership, backpressure, completion, shutdown, and error handling around a byte-addressed scratch region.
 
-The CPU path is self-contained. All **11 host contract tests pass** in Release, ASan/UBSan, and TSan. An optional pinned TT-UMD adapter targets ttsim; its build and execution evidence is recorded separately in [STATE.md](STATE.md). This project has no Tenstorrent hardware results.
+The CPU path is self-contained. All **11 host contract tests pass** in Release, ASan/UBSan, and TSan. The pinned TT-UMD adapter also built and passed **five real ttsim process runs**, each checking direct, FIFO, and two-producer 1 KiB readbacks. The three examples linking the real upstream allocator passed. This project has no Tenstorrent hardware results.
 
 ```text
 Two host producers → mutex/CV FIFO → one owner → CPU byte array
@@ -81,7 +81,9 @@ On Apple M2, seven samples of 20,000 checked round trips had median total wall t
 
 ## Upstream scope
 
-TT-UMD is pinned to `1a513b2ca8a8955db1fe306b6d65dee2ffe5c9bc`; ttsim reference source is `89bdc5eb726c4f1ebbe597e03b1b9cdf7622c779`, release `v1.10.6`. Upstream allocator behavior is reference work, not an original allocation algorithm. The optional integration must use descriptor-derived TENSIX coordinates and a bounded scratch region starting at `0x1000`. Direct smoke and FIFO share one live Cluster, with backend destruction after owner join.
+TT-UMD is pinned to `1a513b2ca8a8955db1fe306b6d65dee2ffe5c9bc`; ttsim reference source is `89bdc5eb726c4f1ebbe597e03b1b9cdf7622c779`, release `v1.10.6`. Upstream allocator behavior is reference work, not an original allocation algorithm. The integration uses descriptor-derived TENSIX coordinates and a bounded scratch region starting at `0x1000`. Direct smoke and FIFO share one live Cluster, with backend destruction after owner join.
+
+The Linux ARM64 build used Ubuntu 22.04.3, Clang 20.1.8 and GCC 12 headers/runtime. [Final simulator samples](results/umd-final/) bind source, binary, library and descriptor hashes; [build logs](results/umd-build/) retain the initial adapter compile error and its correction. The simulator warns that board n150 harvesting metadata is inconsistent. Verification is limited to L1 byte transfers on the selected `t1-1` core; it does not establish full topology correctness.
 
 The simulator API requires serialized calls and can terminate its process on fatal errors. Its fixed-version barrier hooks do not validate silicon barriers. No kernel launch, DMA engine, multi-chip scheduler, or full Metal runtime is implemented here. See [UMD build and source details](docs/umd-integration.md), the [Chinese code tour](docs/explain.md), and [evidence boundaries](docs/resume-evidence.md).
 

@@ -1,0 +1,348 @@
++ date -u
+Wed Sep  9 02:07:41 UTC 2026
++ uname -srm
+Linux 6.8.0-1044-oracle aarch64
++ df -h .
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda1       146G   41G  106G  28% /
++ free -m
+               total        used        free      shared  buff/cache   available
+Mem:           23979        2903        1613         110       19462       20643
+Swap:              0           0           0
++ runtime_prefix=$TOOLCHAIN_PREFIX
++ runtime_venv=$TOOLCHAIN_VENV
++ export PATH=$TOOLCHAIN_VENV/bin:$TOOLCHAIN_PREFIX/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ PATH=$TOOLCHAIN_VENV/bin:$TOOLCHAIN_PREFIX/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ export LD_LIBRARY_PATH=$TOOLCHAIN_PREFIX/lib/aarch64-linux-gnu
++ LD_LIBRARY_PATH=$TOOLCHAIN_PREFIX/lib/aarch64-linux-gnu
++ $TOOLCHAIN_PREFIX/bin/clang++-20 --version
+Ubuntu clang version 20.1.8 (++20250708123929+0de59a293f7a-1~exp1~20250708003944.130)
+Target: aarch64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: $TOOLCHAIN_PREFIX/lib/llvm-20/bin
++ $TOOLCHAIN_VENV/bin/cmake --version
+cmake version 4.0.2
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
++ $TOOLCHAIN_VENV/bin/ninja --version
+1.11.1.git.kitware.jobserver-1
++ sha256sum $TOOLCHAIN_PREFIX/bin/clang++-20
+55c77c7752ce7cc50651970b8d1da4b34efc8bf875119a9e02cce81d343fa7b8  $TOOLCHAIN_PREFIX/bin/clang++-20
++ python3 scripts/fetch_upstream.py
+Cloning into '$PROJECT/third_party/tt-umd'...
+HEAD is now at 1a513b2c Simulation: classify a socket directory by liveness, not by presence (#3340)
+UMD pinned 1a513b2ca8a8955db1fe306b6d65dee2ffe5c9bc; ttsim verified 198664 bytes
+Fetch complete; this is not simulator execution evidence
++ timeout 1200 $TOOLCHAIN_VENV/bin/cmake -S . -B build-umd -G Ninja -DCMAKE_MAKE_PROGRAM=$TOOLCHAIN_VENV/bin/ninja -DCMAKE_C_COMPILER=$TOOLCHAIN_PREFIX/bin/clang-20 -DCMAKE_CXX_COMPILER=$TOOLCHAIN_PREFIX/bin/clang++-20 -DCMAKE_BUILD_TYPE=Release -DTT_TRANSFER_WITH_UMD=ON -DCMAKE_EXPORT_COMPILE_COMMANDS=ON '-DCMAKE_C_FLAGS=--gcc-toolchain=$TOOLCHAIN_PREFIX -isystem $TOOLCHAIN_PREFIX/include -isystem $TOOLCHAIN_PREFIX/include/aarch64-linux-gnu' '-DCMAKE_CXX_FLAGS=--gcc-toolchain=$TOOLCHAIN_PREFIX -isystem $TOOLCHAIN_PREFIX/include -isystem $TOOLCHAIN_PREFIX/include/aarch64-linux-gnu' '-DCMAKE_SHARED_LINKER_FLAGS=-L$TOOLCHAIN_PREFIX/lib/aarch64-linux-gnu -Wl,-rpath,$TOOLCHAIN_PREFIX/lib/aarch64-linux-gnu' '-DCMAKE_EXE_LINKER_FLAGS=-L$TOOLCHAIN_PREFIX/lib/aarch64-linux-gnu -Wl,-rpath,$TOOLCHAIN_PREFIX/lib/aarch64-linux-gnu'
+-- The CXX compiler identification is Clang 20.1.8
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: $TOOLCHAIN_PREFIX/bin/clang++-20 - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Found Git: /usr/bin/git (found version "2.34.1")
+-- The C compiler identification is Clang 20.1.8
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: $TOOLCHAIN_PREFIX/bin/clang-20 - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- CMake version: 4.0.2
+-- CPM: Adding package yaml-cpp@0 (2f86d13775d119edbb69af52e5f566fd65c6953b to $PROJECT/.cpmcache/yaml-cpp/652ccf99aa11ad40631a0e2faf489e7e553b7858)
+-- CPM: Adding package nanomsg@1.8.0 (v1.8.0 to $PROJECT/.cpmcache/nanomsg/28cc32d5bdb6a858fe53b3ccf7e923957e53eada)
+-- CPM: Adding package flatbuffers@24.3.25 (v24.3.25 to $PROJECT/.cpmcache/flatbuffers/2c4062bffa52fa4157b1b4deeae73395df475fda)
+INFOCPM Added flatbuffers, creating ALIAS flatbuffers::flatbuffers
+-- CPM: Adding package libuv@1.51.0 (v1.51.0 to $PROJECT/.cpmcache/libuv/2b05484ccff8fdf26b363fb50e4830b774d7eb53)
+-- CPM: Adding package fmt@11.1.4 (11.1.4 to $PROJECT/.cpmcache/fmt/69912fb6b71fcb1f7e5deca191a2bb4748c4e7b6)
+-- {fmt} version: 11.1.4
+-- Build type: Release
+-- Performing Test HAS_NULLPTR_WARNING
+-- Performing Test HAS_NULLPTR_WARNING - Success
+-- CPM: Adding package spdlog@1.15.2 (v1.15.2 to $PROJECT/.cpmcache/spdlog/b1c2586bb5c35a7929362e87f62433eb68206873)
+-- CPM: Adding package tt-logger@1.1.8 (v1.1.8 to $PROJECT/.cpmcache/tt-logger/d2339ce68562cae34cd95f3fece7fd94eb0529b7)
+-- tt-logger: using spdlog target spdlog::spdlog
+-- CPM: Adding package cxxopts@0 (dbf4c6a66816f6c3872b46cc6af119ad227e04e1 to $PROJECT/.cpmcache/cxxopts/dda70ad5c1afdb5368541192bace55dbcd7872e3)
+-- CPM: Adding package nanobind@2.10.2 (v2.10.2 to $PROJECT/.cpmcache/nanobind/ecb3880ad950ee63406ff66a5563d380c7994aa7)
+-- CPM: Adding package umd_asio@ (asio-1-30-2 to $PROJECT/.cpmcache/umd_asio/83a029aeca9a00050695989a093d0cc1fcd67ba8)
+-- Populating umd_asio
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: $PROJECT/build-umd/_deps/umd_asio-subbuild
+[1/9] Creating directories for 'umd_asio-populate'
+[1/9] Performing download step (git clone) for 'umd_asio-populate'
+Cloning into '83a029aeca9a00050695989a093d0cc1fcd67ba8'...
+HEAD is now at 12e0ce9e asio version 1.30.2 released
+[2/9] Performing update step for 'umd_asio-populate'
+-- Already at requested tag: asio-1-30-2
+[3/9] No patch step for 'umd_asio-populate'
+[5/9] No configure step for 'umd_asio-populate'
+[6/9] No build step for 'umd_asio-populate'
+[7/9] No install step for 'umd_asio-populate'
+[8/9] No test step for 'umd_asio-populate'
+[9/9] Completed 'umd_asio-populate'
+-- Looking for backtrace
+-- Looking for backtrace - found
+-- 
+-- ==================== UMD configuration summary ====================
+--   CMAKE_BUILD_TYPE = Release
+--   TT_EMULE_PATH = 
+--   TT_UMD_BUILD_ALL = OFF
+--   TT_UMD_BUILD_EMULE = OFF
+--   TT_UMD_BUILD_EXAMPLES = OFF
+--   TT_UMD_BUILD_JTAG = OFF
+--   TT_UMD_BUILD_PIP = 
+--   TT_UMD_BUILD_PYTHON = OFF
+--   TT_UMD_BUILD_SIMULATION = ON
+--   TT_UMD_BUILD_STATIC = OFF
+--   TT_UMD_BUILD_TESTS = OFF
+--   TT_UMD_BUILD_TOOLS = OFF
+--   TT_UMD_ENABLE_CLANG_TIDY = OFF
+--   TT_UMD_ENABLE_LOGGING = OFF
+--   TT_UMD_ENABLE_TRACY = OFF
+-- ===================================================================
+-- Configuring done (33.1s)
+-- Generating done (0.1s)
+-- Build files have been written to: $PROJECT/build-umd
++ timeout 1800 $TOOLCHAIN_VENV/bin/cmake --build build-umd --target umd_demo allocator_examples --parallel 2
+[0/2] Re-checking globbed directories...
+[1/325] Building CXX object CMakeFiles/tt_transfer.dir/src/cpu_backend.cpp.o
+[2/325] Building CXX object CMakeFiles/tt_transfer.dir/src/runtime.cpp.o
+[3/325] Linking CXX static library libtt_transfer.a
+[4/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/contrib/graphbuilder.cpp.o
+[5/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/binary.cpp.o
+[6/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/contrib/graphbuilderadapter.cpp.o
+[7/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/depthguard.cpp.o
+[8/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/directives.cpp.o
+[9/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/convert.cpp.o
+[10/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/emit.cpp.o
+[11/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/emitfromevents.cpp.o
+[12/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/emitter.cpp.o
+[13/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/emitterstate.cpp.o
+[14/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/exceptions.cpp.o
+[15/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/emitterutils.cpp.o
+[16/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/exp.cpp.o
+[17/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/fptostring.cpp.o
+[18/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/memory.cpp.o
+[19/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/node.cpp.o
+[20/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/node_data.cpp.o
+[21/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/nodebuilder.cpp.o
+[22/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/null.cpp.o
+[23/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/ostream_wrapper.cpp.o
+[24/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/nodeevents.cpp.o
+[25/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/parse.cpp.o
+[26/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/parser.cpp.o
+[27/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/regex_yaml.cpp.o
+[28/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/scanner.cpp.o
+[29/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/scanscalar.cpp.o
+[30/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/scantag.cpp.o
+[31/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/scantoken.cpp.o
+[32/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/simplekey.cpp.o
+[33/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/stream.cpp.o
+[34/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/singledocparser.cpp.o
+[35/325] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/tag.cpp.o
+[36/325] Linking CXX static library _deps/yaml-cpp-build/libyaml-cpp.a
+[37/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/nng_legacy.c.o
+[38/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/nng.c.o
+[39/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/core/device.c.o
+[40/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/core/aio.c.o
+[41/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/core/sockfd.c.o
+[42/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/core/dialer.c.o
+[43/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/core/file.c.o
+[44/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/core/idhash.c.o
+[45/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/core/init.c.o
+[46/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/core/list.c.o
+[47/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/core/listener.c.o
+[48/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/core/lmq.c.o
+[49/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/core/log.c.o
+[50/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/core/message.c.o
+[51/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/core/msgqueue.c.o
+[52/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/core/options.c.o
+[53/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/core/pollable.c.o
+[54/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/core/panic.c.o
+[55/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/core/pipe.c.o
+[56/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/core/reap.c.o
+[57/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/core/sockaddr.c.o
+[58/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/core/stats.c.o
+[59/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/core/socket.c.o
+[60/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/core/strs.c.o
+[61/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/core/stream.c.o
+[62/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/core/taskq.c.o
+[63/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/core/tcp.c.o
+[64/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/core/thread.c.o
+[65/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/platform/posix/posix_alloc.c.o
+[66/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/core/url.c.o
+[67/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/platform/posix/posix_atomic.c.o
+[68/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/platform/posix/posix_clock.c.o
+[69/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/platform/posix/posix_debug.c.o
+[70/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/platform/posix/posix_file.c.o
+[71/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/platform/posix/posix_ipcconn.c.o
+[72/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/platform/posix/posix_ipcdial.c.o
+[73/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/platform/posix/posix_peerid.c.o
+[74/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/platform/posix/posix_ipclisten.c.o
+[75/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/platform/posix/posix_pipe.c.o
+[76/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/platform/posix/posix_resolv_gai.c.o
+[77/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/platform/posix/posix_sockaddr.c.o
+[78/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/platform/posix/posix_socketpair.c.o
+[79/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/platform/posix/posix_sockfd.c.o
+[80/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/platform/posix/posix_tcpconn.c.o
+[81/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/platform/posix/posix_tcpdial.c.o
+[82/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/platform/posix/posix_tcplisten.c.o
+[83/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/platform/posix/posix_thread.c.o
+[84/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/platform/posix/posix_udp.c.o
+[85/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/platform/posix/posix_pollq_epoll.c.o
+[86/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/platform/posix/posix_rand_getrandom.c.o
+[87/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/sp/protocol/bus0/bus.c.o
+[88/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/sp/protocol/pair0/pair.c.o
+[89/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/sp/protocol/pair1/pair1_poly.c.o
+[90/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/sp/protocol/pair1/pair.c.o
+[91/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/sp/protocol/pipeline0/push.c.o
+[92/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/sp/protocol/pipeline0/pull.c.o
+[93/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/sp/protocol/pubsub0/pub.c.o
+[94/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/sp/protocol/pubsub0/sub.c.o
+[95/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/sp/protocol/pubsub0/xsub.c.o
+[96/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/sp/protocol/reqrep0/xreq.c.o
+[97/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/sp/protocol/reqrep0/req.c.o
+[98/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/sp/protocol/reqrep0/xrep.c.o
+[99/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/sp/protocol/reqrep0/rep.c.o
+[100/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/sp/protocol/survey0/xsurvey.c.o
+[101/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/sp/protocol/survey0/survey.c.o
+[102/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/sp/protocol/survey0/xrespond.c.o
+[103/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/sp/protocol/survey0/respond.c.o
+[104/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/sp/transport/inproc/inproc.c.o
+[105/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/sp/transport/socket/sockfd.c.o
+[106/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/sp/transport/ipc/ipc.c.o
+[107/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/sp/transport/tcp/tcp.c.o
+[108/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/sp/transport/ws/websocket.c.o
+[109/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/sp/transport/tls/tls.c.o
+[110/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/sp/protocol.c.o
+[111/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/sp/transport.c.o
+[112/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/supplemental/base64/base64.c.o
+[113/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/supplemental/http/http_public.c.o
+[114/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/supplemental/http/http_client.c.o
+[115/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/supplemental/http/http_chunk.c.o
+[116/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/supplemental/http/http_conn.c.o
+[117/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/supplemental/http/http_schemes.c.o
+[118/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/supplemental/http/http_msg.c.o
+[119/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/supplemental/sha1/sha1.c.o
+[120/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/supplemental/http/http_server.c.o
+[121/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/supplemental/tls/tls_common.c.o
+[122/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/supplemental/util/idhash.c.o
+[123/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/supplemental/util/options.c.o
+[124/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/supplemental/util/platform.c.o
+[125/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/compat/nanomsg/nn.c.o
+[126/325] Building C object _deps/nanomsg-build/CMakeFiles/nng.dir/src/supplemental/websocket/websocket.c.o
+[127/325] Linking C static library _deps/nanomsg-build/libnng.a
+[128/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatbuffers.dir/src/idl_gen_text.cpp.o
+[129/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatbuffers.dir/src/reflection.cpp.o
+[130/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatbuffers.dir/src/util.cpp.o
+[131/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatbuffers.dir/src/idl_parser.cpp.o
+[132/325] Linking CXX static library _deps/flatbuffers-build/libflatbuffers.a
+[133/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/idl_gen_text.cpp.o
+[134/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/reflection.cpp.o
+[135/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/idl_parser.cpp.o
+[136/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/util.cpp.o
+[137/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/idl_gen_binary.cpp.o
+[138/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/idl_gen_cpp.cpp.o
+[139/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/idl_gen_csharp.cpp.o
+[140/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/idl_gen_dart.cpp.o
+[141/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/idl_gen_kotlin.cpp.o
+[142/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/idl_gen_kotlin_kmp.cpp.o
+[143/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/idl_gen_go.cpp.o
+[144/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/idl_gen_java.cpp.o
+[145/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/idl_gen_ts.cpp.o
+[146/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/idl_gen_php.cpp.o
+[147/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/idl_gen_lobster.cpp.o
+[148/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/idl_gen_python.cpp.o
+[149/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/idl_gen_fbs.cpp.o
+[150/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/idl_gen_grpc.cpp.o
+[151/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/idl_gen_rust.cpp.o
+[152/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/idl_gen_json_schema.cpp.o
+[153/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/file_name_saving_file_manager.cpp.o
+[154/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/file_binary_writer.cpp.o
+[155/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/file_writer.cpp.o
+[156/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/idl_gen_swift.cpp.o
+[157/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/flatc_main.cpp.o
+[158/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/flatc.cpp.o
+[159/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/annotated_binary_text_gen.cpp.o
+[160/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/binary_annotator.cpp.o
+[161/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/bfbs_gen_lua.cpp.o
+[162/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/bfbs_gen_nim.cpp.o
+[163/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/src/code_generators.cpp.o
+[164/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/grpc/src/compiler/go_generator.cc.o
+[165/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/grpc/src/compiler/cpp_generator.cc.o
+[166/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/grpc/src/compiler/python_generator.cc.o
+[167/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/grpc/src/compiler/java_generator.cc.o
+[168/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/grpc/src/compiler/swift_generator.cc.o
+[169/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/fs-poll.c.o
+[170/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/idna.c.o
+[171/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/inet.c.o
+[172/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/random.c.o
+[173/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/strscpy.c.o
+[174/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/strtok.c.o
+[175/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/thread-common.c.o
+[176/325] Building CXX object _deps/flatbuffers-build/CMakeFiles/flatc.dir/grpc/src/compiler/ts_generator.cc.o
+[177/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/threadpool.c.o
+[178/325] Linking CXX executable _deps/flatbuffers-build/flatc
+[179/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/timer.c.o
+[180/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/uv-data-getter-setters.c.o
+[181/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/version.c.o
+[182/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/uv-common.c.o
+[183/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/unix/async.c.o
+[184/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/unix/dl.c.o
+[185/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/unix/core.c.o
+[186/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/unix/getaddrinfo.c.o
+[187/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/unix/getnameinfo.c.o
+[188/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/unix/fs.c.o
+[189/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/unix/loop-watcher.c.o
+[190/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/unix/loop.c.o
+[191/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/unix/pipe.c.o
+[192/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/unix/poll.c.o
+[193/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/unix/random-devurandom.c.o
+[194/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/unix/process.c.o
+[195/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/unix/signal.c.o
+[196/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/unix/stream.c.o
+[197/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/unix/tcp.c.o
+[198/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/unix/thread.c.o
+[199/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/unix/tty.c.o
+[200/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/unix/proctitle.c.o
+[201/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/unix/udp.c.o
+[202/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/unix/procfs-exepath.c.o
+[203/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/unix/random-getrandom.c.o
+[204/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/unix/random-sysctl-linux.c.o
+[205/325] Building C object _deps/libuv-build/CMakeFiles/uv_a.dir/src/unix/linux.c.o
+[206/325] Linking C static library _deps/libuv-build/libuv.a
+[207/325] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/stdout_sinks.cpp.o
+[208/325] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/color_sinks.cpp.o
+[209/325] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/file_sinks.cpp.o
+[210/325] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/spdlog.cpp.o
+[211/325] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/cfg.cpp.o
+[212/325] Building C object umd/tt-kmd-lib/CMakeFiles/tt-kmd-lib.dir/src/tt_kmd_lib.c.o
+[213/325] Linking C static library umd/tt-kmd-lib/libtt-kmd-lib.a
+[214/325] Generating FlatBuffers header $PROJECT/build-umd/umd/device/simulation_device_generated.h
+[215/325] Generating FlatBuffers header $PROJECT/build-umd/umd/device/simulation_server_protocol_generated.h
+[216/325] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/async.cpp.o
+[217/325] Building CXX object CMakeFiles/umd_demo.dir/examples/umd_demo.cpp.o
+[218/325] Building CXX object CMakeFiles/tt_transfer_umd.dir/src/umd_backend.cpp.o
+FAILED: CMakeFiles/tt_transfer_umd.dir/src/umd_backend.cpp.o 
+$TOOLCHAIN_PREFIX/bin/clang++-20 -DFMT_HEADER_ONLY=1 -DTT_UMD_BUILD_SIMULATION -I$PROJECT/include -I$PROJECT/third_party/tt-umd/device/api -isystem $PROJECT/.cpmcache/fmt/69912fb6b71fcb1f7e5deca191a2bb4748c4e7b6/include --gcc-toolchain=$TOOLCHAIN_PREFIX -isystem $TOOLCHAIN_PREFIX/include -isystem $TOOLCHAIN_PREFIX/include/aarch64-linux-gnu -O3 -DNDEBUG -std=gnu++20 -MD -MT CMakeFiles/tt_transfer_umd.dir/src/umd_backend.cpp.o -MF CMakeFiles/tt_transfer_umd.dir/src/umd_backend.cpp.o.d -o CMakeFiles/tt_transfer_umd.dir/src/umd_backend.cpp.o -c $PROJECT/src/umd_backend.cpp
+$PROJECT/src/umd_backend.cpp:36:49: error: no member named 'CoreType' in namespace 'tt::umd'; did you mean 'tt::CoreType'?
+   36 |         const auto cores = descriptor.get_cores(tt::umd::CoreType::TENSIX);
+      |                                                 ^~~~~~~~~~~~~~~~~
+      |                                                 tt::CoreType
+$PROJECT/third_party/tt-umd/device/api/umd/device/arch/architecture_implementation.hpp:22:12: note: 'tt::CoreType' declared here
+   22 | enum class CoreType;
+      |            ^
+1 error generated.
+[219/325] Building CXX object CMakeFiles/allocator_examples.dir/examples/allocator_examples.cpp.o
+ninja: build stopped: subcommand failed.
++ runtime_cleanup
++ '[' -f $PROJECT_BASE/.heavy-build.lock/owner ']'
+++ head -n1 $PROJECT_BASE/.heavy-build.lock/owner
++ '[' tt-transfer-runtime:1440731:20260909T020741Z = tt-transfer-runtime:1440731:20260909T020741Z ']'
++ rm $PROJECT_BASE/.heavy-build.lock/owner
++ rmdir $PROJECT_BASE/.heavy-build.lock
++ echo 'Runtime shared build lock released'
+Runtime shared build lock released

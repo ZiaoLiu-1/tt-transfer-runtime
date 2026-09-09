@@ -1,0 +1,15 @@
+2026-09-09 02:24:52.128 | info     |             UMD | Cluster constructor started. (cluster.cpp:408)
+2026-09-09 02:24:52.129 | warning  |             UMD | Chip 0 has inconsistent Tensix harvesting information between harvest mask and number of harvested. Board n150 expects 1 units, but harvest mask indicates 0 units. (cluster_descriptor.cpp:1304)
+2026-09-09 02:24:52.130 | info     |             UMD | Creating Simulation device (cluster.cpp:285)
+2026-09-09 02:24:52.132 | info     | EmulationDriver | TTSimTTDevice chip_id=0 PCI vendor_id=0x1e52 device_id=0x401e (tt_sim_tt_device.cpp:135)
+2026-09-09 02:24:52.133 | info     |             UMD | Cluster constructor completed. (cluster.cpp:683)
+core=t1-1 (NOC0) scratch=0x1000 extent_bytes=8192
+PASS direct_readback bytes=1024
+PASS fifo_readback bytes=1024
+PASS two_producer_readback bytes_each=1024 disjoint_regions=2
+METRIC constructor_us=4968.02 direct_roundtrip_us=31.72 fifo_roundtrip_us=81.801
+BOUNDARY host_wall_time_only; simulator_l1_barrier_is_noop; no_silicon_claim
+2026-09-09 02:24:52.133 | info     |             UMD | Cluster destructor started. (cluster.cpp:1017)
+2026-09-09 02:24:52.133 | info     |             UMD | Cluster destructor completed. (cluster.cpp:1020)
+2026-09-09 02:24:52.133 | info     | EmulationDriver | Sending exit signal to remote... (tt_sim_communicator.cpp:295)
+[4] 0.0 seconds (0.4 KHz)

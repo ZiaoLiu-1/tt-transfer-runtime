@@ -1,0 +1,127 @@
+{
+  "utc_verified": "2026-09-09T02:24:52.234906+00:00",
+  "against_run": "umd-final",
+  "checks": {
+    "cmake/Umd.cmake": {
+      "expected": "5d6b88bb302bd4438f8f516f3784e8f8899564aecbc7f6fd30fe20efe1951391",
+      "actual": "5d6b88bb302bd4438f8f516f3784e8f8899564aecbc7f6fd30fe20efe1951391",
+      "match": true
+    },
+    "examples/allocator_examples.cpp": {
+      "expected": "36a3bde160d523bb9323e2bd8834945689a4d918e3f18c75da17e12a9351ea8b",
+      "actual": "36a3bde160d523bb9323e2bd8834945689a4d918e3f18c75da17e12a9351ea8b",
+      "match": true
+    },
+    "examples/umd_demo.cpp": {
+      "expected": "7fc15e055dd8a98eaa003bab239f046b58b0048ae7be6c7266c09b5e4c3066c3",
+      "actual": "7fc15e055dd8a98eaa003bab239f046b58b0048ae7be6c7266c09b5e4c3066c3",
+      "match": true
+    },
+    "include/tt_transfer/cpu_backend.hpp": {
+      "expected": "b58381cb5bef115a302f96029c367da7777ec3905fb2a3571b7441656c9a0461",
+      "actual": "b58381cb5bef115a302f96029c367da7777ec3905fb2a3571b7441656c9a0461",
+      "match": true
+    },
+    "include/tt_transfer/runtime.hpp": {
+      "expected": "a0b3c900a33201d9cde17999c91d8033a94d183f957a706af7630a906c38412d",
+      "actual": "a0b3c900a33201d9cde17999c91d8033a94d183f957a706af7630a906c38412d",
+      "match": true
+    },
+    "include/tt_transfer/umd_backend.hpp": {
+      "expected": "c8f2e2600a4b745ee2f689667e925e1ab775b1e9abef46ef12cf4c4adb92474f",
+      "actual": "c8f2e2600a4b745ee2f689667e925e1ab775b1e9abef46ef12cf4c4adb92474f",
+      "match": true
+    },
+    "scripts/build_umd_linux.sh": {
+      "expected": "6a2af1ea7ff6dbb44ad92d2530447b6891cacfbbea23ddc982d8d49c58659407",
+      "actual": "6a2af1ea7ff6dbb44ad92d2530447b6891cacfbbea23ddc982d8d49c58659407",
+      "match": true
+    },
+    "scripts/fetch_upstream.py": {
+      "expected": "4e708b2446cd0e6695c19640c48174a2dfa636f044fb6e81ebaf320f66c7a98d",
+      "actual": "4e708b2446cd0e6695c19640c48174a2dfa636f044fb6e81ebaf320f66c7a98d",
+      "match": true
+    },
+    "scripts/measure_cpu.py": {
+      "expected": "234881fa78cd017e0d2b5a07a0e327a34dbaaad59c09ff97eb73c5c03d28b9bb",
+      "actual": "234881fa78cd017e0d2b5a07a0e327a34dbaaad59c09ff97eb73c5c03d28b9bb",
+      "match": true
+    },
+    "scripts/run_umd.py": {
+      "expected": "8983f3e410ed755573b5ca1d2873521255345b3a5fbaf21a2b4c25eaf6895a04",
+      "actual": "8983f3e410ed755573b5ca1d2873521255345b3a5fbaf21a2b4c25eaf6895a04",
+      "match": true
+    },
+    "scripts/verify_host.py": {
+      "expected": "99d244ec3f7c301d2edd1558b2c4ac59e0e713b436bbcf02179dee97a06a0ee1",
+      "actual": "99d244ec3f7c301d2edd1558b2c4ac59e0e713b436bbcf02179dee97a06a0ee1",
+      "match": true
+    },
+    "src/cpu_backend.cpp": {
+      "expected": "9e799ec33c52f4de937e6dbcf2f2a969e0f2729fcdce07085f82156bcbc55894",
+      "actual": "9e799ec33c52f4de937e6dbcf2f2a969e0f2729fcdce07085f82156bcbc55894",
+      "match": true
+    },
+    "src/demo.cpp": {
+      "expected": "49463abdf5380d1959f282741615f0794236c0f68884be5f751cb97b018daa5a",
+      "actual": "49463abdf5380d1959f282741615f0794236c0f68884be5f751cb97b018daa5a",
+      "match": true
+    },
+    "src/runtime.cpp": {
+      "expected": "83f17851edb1b200fe7402b7e49b454f71b3b781590851aa55d47b8ef16c7ee8",
+      "actual": "83f17851edb1b200fe7402b7e49b454f71b3b781590851aa55d47b8ef16c7ee8",
+      "match": true
+    },
+    "src/umd_backend.cpp": {
+      "expected": "55d04d5180df398d1b63e533b5845944a6182132973ce1de41b17e1714fe530e",
+      "actual": "55d04d5180df398d1b63e533b5845944a6182132973ce1de41b17e1714fe530e",
+      "match": true
+    },
+    "CMakeLists.txt": {
+      "expected": "97236d61ef067b297b3a768cfe156ae70e6c043d579df934174898cac7a9c293",
+      "actual": "97236d61ef067b297b3a768cfe156ae70e6c043d579df934174898cac7a9c293",
+      "match": true
+    },
+    "provenance.json": {
+      "expected": "d82963d385235f426002087d872c4d874b69a4a27b735176772a0368e6da28bf",
+      "actual": "d82963d385235f426002087d872c4d874b69a4a27b735176772a0368e6da28bf",
+      "match": true
+    },
+    "build-umd/umd_demo": {
+      "expected": "e9c308daa071e5b3aa27a26b965e70c28ed1c4df4652365e5335f2126a8466a4",
+      "actual": "e9c308daa071e5b3aa27a26b965e70c28ed1c4df4652365e5335f2126a8466a4",
+      "match": true
+    },
+    "third_party/ttsim/libttsim_wh_aarch64.so": {
+      "expected": "d38142c9d94526a5d6b48e5c0711efd718ffaed9270150c5556da0de788214ae",
+      "actual": "d38142c9d94526a5d6b48e5c0711efd718ffaed9270150c5556da0de788214ae",
+      "match": true
+    },
+    "third_party/ttsim/soc_descriptor.yaml": {
+      "expected": "24fd3dfae80435a7d9113e255d6d6af9cdf83f6ae3b1c385e1d48a24795ccf49",
+      "actual": "24fd3dfae80435a7d9113e255d6d6af9cdf83f6ae3b1c385e1d48a24795ccf49",
+      "match": true
+    },
+    "build-umd/umd/lib/libtt-umd.so.0.1.0": {
+      "expected": "61e918d14fd65e5bc345e7ec69bdf8acd68b934fff02b054d4abd711d50bca0e",
+      "actual": "61e918d14fd65e5bc345e7ec69bdf8acd68b934fff02b054d4abd711d50bca0e",
+      "match": true
+    },
+    "build-umd/umd/lib/libtt-umd.so": {
+      "expected": "61e918d14fd65e5bc345e7ec69bdf8acd68b934fff02b054d4abd711d50bca0e",
+      "actual": "61e918d14fd65e5bc345e7ec69bdf8acd68b934fff02b054d4abd711d50bca0e",
+      "match": true
+    },
+    "build-umd/umd/lib/libtt-umd.so.0": {
+      "expected": "61e918d14fd65e5bc345e7ec69bdf8acd68b934fff02b054d4abd711d50bca0e",
+      "actual": "61e918d14fd65e5bc345e7ec69bdf8acd68b934fff02b054d4abd711d50bca0e",
+      "match": true
+    }
+  },
+  "umd_commit": "1a513b2ca8a8955db1fe306b6d65dee2ffe5c9bc",
+  "umd_status": "",
+  "all_match": true,
+  "same_binary_as_initial_run": true,
+  "same_umd_library_as_initial_run": true,
+  "runner_sha256": "8983f3e410ed755573b5ca1d2873521255345b3a5fbaf21a2b4c25eaf6895a04"
+}

@@ -1,0 +1,36 @@
++ date -u
+Wed Sep  9 02:24:51 UTC 2026
++ runtime_prefix=$TOOLCHAIN_PREFIX
++ runtime_venv=$TOOLCHAIN_VENV
++ export PATH=$TOOLCHAIN_VENV/bin:$TOOLCHAIN_PREFIX/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ PATH=$TOOLCHAIN_VENV/bin:$TOOLCHAIN_PREFIX/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ export LD_LIBRARY_PATH=$TOOLCHAIN_PREFIX/lib/aarch64-linux-gnu
++ LD_LIBRARY_PATH=$TOOLCHAIN_PREFIX/lib/aarch64-linux-gnu
++ sha256sum scripts/run_umd.py src/umd_backend.cpp
+8983f3e410ed755573b5ca1d2873521255345b3a5fbaf21a2b4c25eaf6895a04  scripts/run_umd.py
+55d04d5180df398d1b63e533b5845944a6182132973ce1de41b17e1714fe530e  src/umd_backend.cpp
++ sha256sum $TOOLCHAIN_PREFIX/lib/aarch64-linux-gnu/libstdc++.so.6 $TOOLCHAIN_PREFIX/lib/aarch64-linux-gnu/libhwloc.so.15
+03efc8de2eb1f016fa59a937b8858c48ad893558737ef61fe16bbb622283c759  $TOOLCHAIN_PREFIX/lib/aarch64-linux-gnu/libstdc++.so.6
+71af1a40f4649081e756f670234c655dc9c9b52eceb9580a9dd81a3337e64cd5  $TOOLCHAIN_PREFIX/lib/aarch64-linux-gnu/libhwloc.so.15
++ git diff --binary HEAD
++ python3 scripts/run_umd.py build-umd/umd_demo third_party/ttsim/libttsim_wh_aarch64.so --output results/umd-final --repeats 5 --timeout 60
+{"sample": 0, "utc_start": "2026-09-09T02:24:52.091088+00:00", "exit_code": 0, "classification": "pass", "process_wall_seconds": 0.01597675308585167, "constructor_us": "5122.62", "direct_roundtrip_us": "32", "fifo_roundtrip_us": "82.04"}
+{"sample": 1, "utc_start": "2026-09-09T02:24:52.107485+00:00", "exit_code": 0, "classification": "pass", "process_wall_seconds": 0.015903955325484276, "constructor_us": "4887.46", "direct_roundtrip_us": "28.161", "fifo_roundtrip_us": "63.88"}
+{"sample": 2, "utc_start": "2026-09-09T02:24:52.123828+00:00", "exit_code": 0, "classification": "pass", "process_wall_seconds": 0.01586083322763443, "constructor_us": "4968.02", "direct_roundtrip_us": "31.72", "fifo_roundtrip_us": "81.801"}
+{"sample": 3, "utc_start": "2026-09-09T02:24:52.140092+00:00", "exit_code": 0, "classification": "pass", "process_wall_seconds": 0.015822315588593483, "constructor_us": "4814.66", "direct_roundtrip_us": "28.24", "fifo_roundtrip_us": "67.48"}
+{"sample": 4, "utc_start": "2026-09-09T02:24:52.156310+00:00", "exit_code": 0, "classification": "pass", "process_wall_seconds": 0.015845196321606636, "constructor_us": "4866.54", "direct_roundtrip_us": "27.84", "fifo_roundtrip_us": "63.92"}
++ python3 -
+PASS final post-run identity: 23 checks; binary and UMD library unchanged; runner matches approved SHA
++ sha256sum $TOOLCHAIN_PREFIX/lib/aarch64-linux-gnu/libstdc++.so.6 $TOOLCHAIN_PREFIX/lib/aarch64-linux-gnu/libhwloc.so.15
+03efc8de2eb1f016fa59a937b8858c48ad893558737ef61fe16bbb622283c759  $TOOLCHAIN_PREFIX/lib/aarch64-linux-gnu/libstdc++.so.6
+71af1a40f4649081e756f670234c655dc9c9b52eceb9580a9dd81a3337e64cd5  $TOOLCHAIN_PREFIX/lib/aarch64-linux-gnu/libhwloc.so.15
++ date -u
+Wed Sep  9 02:24:52 UTC 2026
++ runtime_cleanup
++ '[' -f $PROJECT_BASE/.heavy-build.lock/owner ']'
+++ head -n1 $PROJECT_BASE/.heavy-build.lock/owner
++ '[' tt-transfer-runtime:1462590:20260909T022451Z = tt-transfer-runtime:1462590:20260909T022451Z ']'
++ rm $PROJECT_BASE/.heavy-build.lock/owner
++ rmdir $PROJECT_BASE/.heavy-build.lock
++ echo 'Runtime shared build lock released'
+Runtime shared build lock released

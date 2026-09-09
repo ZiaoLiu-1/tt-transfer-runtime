@@ -33,7 +33,7 @@ void check_range(std::size_t offset, std::size_t bytes) {
 struct UmdBackend::Impl {
     explicit Impl(const std::filesystem::path& library) : cluster(simulation_options(library)) {
         const auto& descriptor = cluster.get_soc_descriptor(0);
-        const auto cores = descriptor.get_cores(tt::umd::CoreType::TENSIX);
+        const auto cores = descriptor.get_cores(tt::CoreType::TENSIX);
         if (cores.empty() || descriptor.worker_l1_size <= 0 ||
             scratch_address + scratch_bytes > static_cast<std::uint64_t>(descriptor.worker_l1_size)) {
             throw std::runtime_error("descriptor has no legal TENSIX scratch region");

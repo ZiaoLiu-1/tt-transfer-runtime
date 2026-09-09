@@ -1,0 +1,10 @@
+{
+  "sample": 4,
+  "utc_start": "2026-09-09T02:16:12.306060+00:00",
+  "exit_code": 0,
+  "classification": "pass",
+  "process_wall_seconds": 0.015831753611564636,
+  "constructor_us": "4980.06",
+  "direct_roundtrip_us": "31.6",
+  "fifo_roundtrip_us": "72.601"
+}

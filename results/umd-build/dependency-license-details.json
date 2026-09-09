@@ -1,0 +1,21 @@
+{
+  "scope": "Supplement for license files nested below repository root; source cache inventory includes unbuilt dependencies and nested submodules",
+  "licenses": [
+    {
+      "dependency": "umd_asio",
+      "repository": "https://github.com/chriskohlhoff/asio",
+      "commit": "12e0ce9e0500bf0f247dbd1ae894272656456079",
+      "path": "asio/COPYING",
+      "sha256": "5cc69ca9afd3417ed8e58bcd9c0bb730375e9e3e92b5aaf6483b93a2837e0cac",
+      "url": "https://github.com/chriskohlhoff/asio/blob/12e0ce9e0500bf0f247dbd1ae894272656456079/asio/COPYING"
+    },
+    {
+      "dependency": "umd_asio",
+      "repository": "https://github.com/chriskohlhoff/asio",
+      "commit": "12e0ce9e0500bf0f247dbd1ae894272656456079",
+      "path": "asio/LICENSE_1_0.txt",
+      "sha256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566",
+      "url": "https://github.com/chriskohlhoff/asio/blob/12e0ce9e0500bf0f247dbd1ae894272656456079/asio/LICENSE_1_0.txt"
+    }
+  ]
+}

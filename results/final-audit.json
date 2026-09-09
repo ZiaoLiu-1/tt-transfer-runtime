@@ -1,0 +1,132 @@
+{
+  "utc": "2026-09-09T02:27:25.705770+00:00",
+  "scope": "Read-only verification of imported evidence and current source; no new host or UMD executions",
+  "checks": {
+    "host_hashes_except_uncompiled_optional_adapter": {
+      "CMakeLists.txt": true,
+      "benchmarks/cpu_benchmark.cpp": true,
+      "include/tt_transfer/cpu_backend.hpp": true,
+      "include/tt_transfer/runtime.hpp": true,
+      "include/tt_transfer/umd_backend.hpp": true,
+      "src/cpu_backend.cpp": true,
+      "src/demo.cpp": true,
+      "src/runtime.cpp": true,
+      "tests/runtime_tests.cpp": true
+    },
+    "host_stages_pass": true,
+    "host_individual_pass_counts": {
+      "release": 11,
+      "asan": 11,
+      "tsan": 11
+    },
+    "final_umd_local_source_matches": {
+      "cmake/Umd.cmake": true,
+      "examples/allocator_examples.cpp": true,
+      "examples/umd_demo.cpp": true,
+      "include/tt_transfer/cpu_backend.hpp": true,
+      "include/tt_transfer/runtime.hpp": true,
+      "include/tt_transfer/umd_backend.hpp": true,
+      "scripts/build_umd_linux.sh": true,
+      "scripts/fetch_upstream.py": true,
+      "scripts/measure_cpu.py": true,
+      "scripts/run_umd.py": true,
+      "scripts/verify_host.py": true,
+      "src/cpu_backend.cpp": true,
+      "src/demo.cpp": true,
+      "src/runtime.cpp": true,
+      "src/umd_backend.cpp": true,
+      "CMakeLists.txt": true,
+      "provenance.json": true
+    },
+    "post_run_match_count": 23,
+    "umd_commit_clean": true,
+    "umd_final_samples": [
+      {
+        "sample": 0,
+        "pass": true,
+        "harvesting_warning_retained": true,
+        "core_verified": true
+      },
+      {
+        "sample": 1,
+        "pass": true,
+        "harvesting_warning_retained": true,
+        "core_verified": true
+      },
+      {
+        "sample": 2,
+        "pass": true,
+        "harvesting_warning_retained": true,
+        "core_verified": true
+      },
+      {
+        "sample": 3,
+        "pass": true,
+        "harvesting_warning_retained": true,
+        "core_verified": true
+      },
+      {
+        "sample": 4,
+        "pass": true,
+        "harvesting_warning_retained": true,
+        "core_verified": true
+      }
+    ],
+    "imported_file_matches": {
+      "umd-build/artifact-identity.log": true,
+      "umd-build/dependencies.json": true,
+      "umd-build/dependency-license-details.json": true,
+      "umd-build/final-source-changes.patch": true,
+      "umd-build/native-environment.log": true,
+      "umd-build/phase-01.log": true,
+      "umd-build/phase-02.log": true,
+      "umd-build/phase-final.log": true,
+      "umd-build/post-run-identity-20260909.json": true,
+      "umd-build/post-run-identity-final.json": true,
+      "umd-build/source-changes.patch": true,
+      "umd-20260909/run-metadata.json": true,
+      "umd-20260909/sample-00.json": true,
+      "umd-20260909/sample-00.stderr.log": true,
+      "umd-20260909/sample-00.stdout.log": true,
+      "umd-20260909/sample-01.json": true,
+      "umd-20260909/sample-01.stderr.log": true,
+      "umd-20260909/sample-01.stdout.log": true,
+      "umd-20260909/sample-02.json": true,
+      "umd-20260909/sample-02.stderr.log": true,
+      "umd-20260909/sample-02.stdout.log": true,
+      "umd-20260909/sample-03.json": true,
+      "umd-20260909/sample-03.stderr.log": true,
+      "umd-20260909/sample-03.stdout.log": true,
+      "umd-20260909/sample-04.json": true,
+      "umd-20260909/sample-04.stderr.log": true,
+      "umd-20260909/sample-04.stdout.log": true,
+      "umd-20260909/samples.csv": true,
+      "umd-final/run-metadata.json": true,
+      "umd-final/sample-00.json": true,
+      "umd-final/sample-00.stderr.log": true,
+      "umd-final/sample-00.stdout.log": true,
+      "umd-final/sample-01.json": true,
+      "umd-final/sample-01.stderr.log": true,
+      "umd-final/sample-01.stdout.log": true,
+      "umd-final/sample-02.json": true,
+      "umd-final/sample-02.stderr.log": true,
+      "umd-final/sample-02.stdout.log": true,
+      "umd-final/sample-03.json": true,
+      "umd-final/sample-03.stderr.log": true,
+      "umd-final/sample-03.stdout.log": true,
+      "umd-final/sample-04.json": true,
+      "umd-final/sample-04.stderr.log": true,
+      "umd-final/sample-04.stdout.log": true,
+      "umd-final/samples.csv": true
+    },
+    "archived_script_matches": {
+      "phase-02": true,
+      "phase-final": true
+    },
+    "python_syntax": "pass",
+    "shell_syntax_exit": 0,
+    "diff_check_exit": 0
+  },
+  "synthetic_test_sha256": "d3c920c74e45c657b9e19518b8bd63a8337c79a1959969fda7041efa39ee4203",
+  "synthetic_log_sha256": "5a392fcd03bc8bb042f899a5ef0cc3eeda450f356ee5f38aaed09424f96a52e3"
+}

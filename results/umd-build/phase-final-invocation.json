@@ -1,0 +1,10 @@
+{
+  "description": "Exact executed final-sampling stdin script with three environment path definitions generalized; binary was not rebuilt.",
+  "original_sha256": "6b1d966d3b480a9db92d893e9b320831078fb7b0eecfb5a8b57d25ffb5bc6d82",
+  "archived_sha256": "6348e6a6aed622f31cde01a3dfe78fbe2b66a4212956913865b5d0ddd7d17c5f",
+  "required_path_variables": [
+    "PROJECT_BASE",
+    "TOOLCHAIN_PREFIX",
+    "TOOLCHAIN_VENV"
+  ]
+}

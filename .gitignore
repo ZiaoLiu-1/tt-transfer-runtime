@@ -1,5 +1,6 @@
 /build*/
 /.tools/
+/.cpmcache/
 /third_party/tt-umd/
 /third_party/ttsim/
 __pycache__/

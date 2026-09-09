@@ -113,11 +113,19 @@ def main():
                     code = process.wait(timeout=args.timeout)
                 except subprocess.TimeoutExpired:
                     timed_out = True
-                    os.killpg(process.pid, signal.SIGTERM)
+                    try:
+                        os.killpg(process.pid, signal.SIGTERM)
+                    except ProcessLookupError:
+                        # The child may exit between wait's deadline and killpg.
+                        # Still reap it and preserve the timeout classification.
+                        pass
                     try:
                         process.wait(timeout=2)
                     except subprocess.TimeoutExpired:
-                        os.killpg(process.pid, signal.SIGKILL)
+                        try:
+                            os.killpg(process.pid, signal.SIGKILL)
+                        except ProcessLookupError:
+                            pass
                         process.wait()
                     code = process.returncode
             except OSError as error:

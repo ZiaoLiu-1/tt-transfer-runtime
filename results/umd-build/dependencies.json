@@ -1,0 +1,167 @@
+[
+  {
+    "cache_path": ".cpmcache/cxxopts/dda70ad5c1afdb5368541192bace55dbcd7872e3",
+    "repository": "https://github.com/jarro2783/cxxopts.git",
+    "commit": "dbf4c6a66816f6c3872b46cc6af119ad227e04e1",
+    "dirty_status": "",
+    "licenses": [
+      {
+        "path": "LICENSE",
+        "sha256": "aa324fbe633a96546bebca975fbbab65caa175894bd00cfa13d7335e7363400c",
+        "url": "https://github.com/jarro2783/cxxopts/blob/dbf4c6a66816f6c3872b46cc6af119ad227e04e1/LICENSE"
+      }
+    ]
+  },
+  {
+    "cache_path": ".cpmcache/flatbuffers/2c4062bffa52fa4157b1b4deeae73395df475fda",
+    "repository": "https://github.com/google/flatbuffers.git",
+    "commit": "595bf0007ab1929570c7671f091313c8fc20644e",
+    "dirty_status": "",
+    "licenses": [
+      {
+        "path": "LICENSE",
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "url": "https://github.com/google/flatbuffers/blob/595bf0007ab1929570c7671f091313c8fc20644e/LICENSE"
+      }
+    ]
+  },
+  {
+    "cache_path": ".cpmcache/fmt/69912fb6b71fcb1f7e5deca191a2bb4748c4e7b6",
+    "repository": "https://github.com/fmtlib/fmt.git",
+    "commit": "123913715afeb8a437e6388b4473fcc4753e1c9a",
+    "dirty_status": "",
+    "licenses": [
+      {
+        "path": "LICENSE",
+        "sha256": "07580f2a3b35709ce703d523f447b242f6dfec7582a8c0df102c7fa2849375f8",
+        "url": "https://github.com/fmtlib/fmt/blob/123913715afeb8a437e6388b4473fcc4753e1c9a/LICENSE"
+      }
+    ]
+  },
+  {
+    "cache_path": ".cpmcache/libuv/2b05484ccff8fdf26b363fb50e4830b774d7eb53",
+    "repository": "https://github.com/libuv/libuv.git",
+    "commit": "5152db2cbfeb5582e9c27c5ea1dba2cd9e10759b",
+    "dirty_status": "",
+    "licenses": [
+      {
+        "path": "LICENSE",
+        "sha256": "16de0c32b265cb7d46a6d3bd614f259dd4d693a5e26b3407b04aae8d73041f0c",
+        "url": "https://github.com/libuv/libuv/blob/5152db2cbfeb5582e9c27c5ea1dba2cd9e10759b/LICENSE"
+      },
+      {
+        "path": "LICENSE-docs",
+        "sha256": "cce5d01fa4a83b794271bd2c28cffdf99afd43c803e6ddefddae39b591ea7448",
+        "url": "https://github.com/libuv/libuv/blob/5152db2cbfeb5582e9c27c5ea1dba2cd9e10759b/LICENSE-docs"
+      },
+      {
+        "path": "LICENSE-extra",
+        "sha256": "262c44bd2cdba037e6d2a82fba15f5800d292bc993a6f5d6b6ea487744d02836",
+        "url": "https://github.com/libuv/libuv/blob/5152db2cbfeb5582e9c27c5ea1dba2cd9e10759b/LICENSE-extra"
+      }
+    ]
+  },
+  {
+    "cache_path": ".cpmcache/nanobind/ecb3880ad950ee63406ff66a5563d380c7994aa7",
+    "repository": "https://github.com/wjakob/nanobind.git",
+    "commit": "c5a3a378aa61d104c82ca053cb1e367782cd3618",
+    "dirty_status": "",
+    "licenses": [
+      {
+        "path": "LICENSE",
+        "sha256": "f305091a4e57805870b217a28ea4b1f16610eece8457d2370f822a9696b75836",
+        "url": "https://github.com/wjakob/nanobind/blob/c5a3a378aa61d104c82ca053cb1e367782cd3618/LICENSE"
+      }
+    ]
+  },
+  {
+    "cache_path": ".cpmcache/nanobind/ecb3880ad950ee63406ff66a5563d380c7994aa7/ext/robin_map",
+    "repository": "https://github.com/Tessil/robin-map",
+    "commit": "4ec1bf19c6a96125ea22062f38c2cf5b958e448e",
+    "dirty_status": "",
+    "licenses": [
+      {
+        "path": "LICENSE",
+        "sha256": "11f2c685ba565a31aef1219f63a7a8845602c97bff70016b9e3278dfe51a2ec5",
+        "url": "https://github.com/Tessil/robin-map/blob/4ec1bf19c6a96125ea22062f38c2cf5b958e448e/LICENSE"
+      }
+    ]
+  },
+  {
+    "cache_path": ".cpmcache/nanomsg/28cc32d5bdb6a858fe53b3ccf7e923957e53eada",
+    "repository": "https://github.com/nanomsg/nng.git",
+    "commit": "29b73962b939a6fbbf6ea8d5d7680bb06d0eeb99",
+    "dirty_status": "",
+    "licenses": [
+      {
+        "path": "LICENSE.txt",
+        "sha256": "40138c116893285687962cf132b1a9cb545a502d0626f19a9103e34221cd58fd",
+        "url": "https://github.com/nanomsg/nng/blob/29b73962b939a6fbbf6ea8d5d7680bb06d0eeb99/LICENSE.txt"
+      }
+    ]
+  },
+  {
+    "cache_path": ".cpmcache/nanomsg/28cc32d5bdb6a858fe53b3ccf7e923957e53eada/extern/nng-wolfssl",
+    "repository": "https://github.com/staysail/nng-wolfssl",
+    "commit": "288d545b92720e3fc38df400419a043cfadb840b",
+    "dirty_status": "",
+    "licenses": [
+      {
+        "path": "COPYING",
+        "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+        "url": "https://github.com/staysail/nng-wolfssl/blob/288d545b92720e3fc38df400419a043cfadb840b/COPYING"
+      }
+    ]
+  },
+  {
+    "cache_path": ".cpmcache/spdlog/b1c2586bb5c35a7929362e87f62433eb68206873",
+    "repository": "https://github.com/gabime/spdlog.git",
+    "commit": "48bcf39a661a13be22666ac64db8a7f886f2637e",
+    "dirty_status": "",
+    "licenses": [
+      {
+        "path": "LICENSE",
+        "sha256": "4ccecab18d1ff0b61174fe3d6c430541625d3ddb865b0d5887db296f883c76e7",
+        "url": "https://github.com/gabime/spdlog/blob/48bcf39a661a13be22666ac64db8a7f886f2637e/LICENSE"
+      }
+    ]
+  },
+  {
+    "cache_path": ".cpmcache/tt-logger/d2339ce68562cae34cd95f3fece7fd94eb0529b7",
+    "repository": "https://github.com/tenstorrent/tt-logger.git",
+    "commit": "359183f6549c65f8b1a4aee7940fa9d966c2b626",
+    "dirty_status": "",
+    "licenses": [
+      {
+        "path": "LICENSE",
+        "sha256": "0fca09971b4f52eb2038f158b8fcf2bfd9b84a0649ff9dfa5a577398aa390637",
+        "url": "https://github.com/tenstorrent/tt-logger/blob/359183f6549c65f8b1a4aee7940fa9d966c2b626/LICENSE"
+      },
+      {
+        "path": "LICENSE_understanding.txt",
+        "sha256": "a729a2fb26ff46f60cf69d9903889236c22672f843041c651ae24263d753abb3",
+        "url": "https://github.com/tenstorrent/tt-logger/blob/359183f6549c65f8b1a4aee7940fa9d966c2b626/LICENSE_understanding.txt"
+      }
+    ]
+  },
+  {
+    "cache_path": ".cpmcache/umd_asio/83a029aeca9a00050695989a093d0cc1fcd67ba8",
+    "repository": "https://github.com/chriskohlhoff/asio.git",
+    "commit": "12e0ce9e0500bf0f247dbd1ae894272656456079",
+    "dirty_status": "",
+    "licenses": []
+  },
+  {
+    "cache_path": ".cpmcache/yaml-cpp/652ccf99aa11ad40631a0e2faf489e7e553b7858",
+    "repository": "https://github.com/jbeder/yaml-cpp.git",
+    "commit": "2f86d13775d119edbb69af52e5f566fd65c6953b",
+    "dirty_status": "",
+    "licenses": [
+      {
+        "path": "LICENSE",
+        "sha256": "aa6fcc27be034e41e21dd832f9175bfe694a48491d9e14ff0fa278e19ad14f1b",
+        "url": "https://github.com/jbeder/yaml-cpp/blob/2f86d13775d119edbb69af52e5f566fd65c6953b/LICENSE"
+      }
+    ]
+  }
+]

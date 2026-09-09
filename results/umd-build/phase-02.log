@@ -1,0 +1,226 @@
++ date -u
+Wed Sep  9 02:11:31 UTC 2026
++ uname -srm
+Linux 6.8.0-1044-oracle aarch64
++ df -h .
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda1       146G   41G  105G  28% /
++ free -m
+               total        used        free      shared  buff/cache   available
+Mem:           23979        2898        1431         110       19648       20648
+Swap:              0           0           0
++ runtime_prefix=$TOOLCHAIN_PREFIX
++ runtime_venv=$TOOLCHAIN_VENV
++ export PATH=$TOOLCHAIN_VENV/bin:$TOOLCHAIN_PREFIX/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ PATH=$TOOLCHAIN_VENV/bin:$TOOLCHAIN_PREFIX/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ export LD_LIBRARY_PATH=$TOOLCHAIN_PREFIX/lib/aarch64-linux-gnu
++ LD_LIBRARY_PATH=$TOOLCHAIN_PREFIX/lib/aarch64-linux-gnu
++ $TOOLCHAIN_PREFIX/bin/clang++-20 --version
+Ubuntu clang version 20.1.8 (++20250708123929+0de59a293f7a-1~exp1~20250708003944.130)
+Target: aarch64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: $TOOLCHAIN_PREFIX/lib/llvm-20/bin
++ $TOOLCHAIN_VENV/bin/cmake --version
+cmake version 4.0.2
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
++ $TOOLCHAIN_VENV/bin/ninja --version
+1.11.1.git.kitware.jobserver-1
++ sha256sum $TOOLCHAIN_PREFIX/bin/clang++-20
+55c77c7752ce7cc50651970b8d1da4b34efc8bf875119a9e02cce81d343fa7b8  $TOOLCHAIN_PREFIX/bin/clang++-20
++ git diff -- src/umd_backend.cpp
+diff --git a/src/umd_backend.cpp b/src/umd_backend.cpp
+index 415e46c..b1c9852 100644
+--- a/src/umd_backend.cpp
++++ b/src/umd_backend.cpp
+@@ -33,7 +33,7 @@ void check_range(std::size_t offset, std::size_t bytes) {
+ struct UmdBackend::Impl {
+     explicit Impl(const std::filesystem::path& library) : cluster(simulation_options(library)) {
+         const auto& descriptor = cluster.get_soc_descriptor(0);
+-        const auto cores = descriptor.get_cores(tt::umd::CoreType::TENSIX);
++        const auto cores = descriptor.get_cores(tt::CoreType::TENSIX);
+         if (cores.empty() || descriptor.worker_l1_size <= 0 ||
+             scratch_address + scratch_bytes > static_cast<std::uint64_t>(descriptor.worker_l1_size)) {
+             throw std::runtime_error("descriptor has no legal TENSIX scratch region");
++ sha256sum src/umd_backend.cpp
+55d04d5180df398d1b63e533b5845944a6182132973ce1de41b17e1714fe530e  src/umd_backend.cpp
++ git diff --binary HEAD
++ python3 scripts/fetch_upstream.py
+UMD pinned 1a513b2ca8a8955db1fe306b6d65dee2ffe5c9bc; ttsim verified 198664 bytes
+Fetch complete; this is not simulator execution evidence
++ timeout 1200 $TOOLCHAIN_VENV/bin/cmake -S . -B build-umd -G Ninja -DCMAKE_MAKE_PROGRAM=$TOOLCHAIN_VENV/bin/ninja -DCMAKE_C_COMPILER=$TOOLCHAIN_PREFIX/bin/clang-20 -DCMAKE_CXX_COMPILER=$TOOLCHAIN_PREFIX/bin/clang++-20 -DCMAKE_BUILD_TYPE=Release -DTT_TRANSFER_WITH_UMD=ON -DCMAKE_EXPORT_COMPILE_COMMANDS=ON '-DCMAKE_C_FLAGS=--gcc-toolchain=$TOOLCHAIN_PREFIX -isystem $TOOLCHAIN_PREFIX/include -isystem $TOOLCHAIN_PREFIX/include/aarch64-linux-gnu' '-DCMAKE_CXX_FLAGS=--gcc-toolchain=$TOOLCHAIN_PREFIX -isystem $TOOLCHAIN_PREFIX/include -isystem $TOOLCHAIN_PREFIX/include/aarch64-linux-gnu' '-DCMAKE_SHARED_LINKER_FLAGS=-L$TOOLCHAIN_PREFIX/lib/aarch64-linux-gnu -Wl,-rpath,$TOOLCHAIN_PREFIX/lib/aarch64-linux-gnu' '-DCMAKE_EXE_LINKER_FLAGS=-L$TOOLCHAIN_PREFIX/lib/aarch64-linux-gnu -Wl,-rpath,$TOOLCHAIN_PREFIX/lib/aarch64-linux-gnu'
+-- CMake version: 4.0.2
+-- CPM: Adding package yaml-cpp@0 (2f86d13775d119edbb69af52e5f566fd65c6953b at $PROJECT/.cpmcache/yaml-cpp/652ccf99aa11ad40631a0e2faf489e7e553b7858)
+-- CPM: Adding package nanomsg@1.8.0 (v1.8.0 at $PROJECT/.cpmcache/nanomsg/28cc32d5bdb6a858fe53b3ccf7e923957e53eada)
+-- CPM: Adding package flatbuffers@24.3.25 (v24.3.25 at $PROJECT/.cpmcache/flatbuffers/2c4062bffa52fa4157b1b4deeae73395df475fda)
+INFOCPM Added flatbuffers, creating ALIAS flatbuffers::flatbuffers
+-- CPM: Adding package libuv@1.51.0 (v1.51.0 at $PROJECT/.cpmcache/libuv/2b05484ccff8fdf26b363fb50e4830b774d7eb53)
+-- {fmt} version: 11.1.4
+-- Build type: Release
+-- CPM: Adding package fmt@11.1.4 (11.1.4 at $PROJECT/.cpmcache/fmt/69912fb6b71fcb1f7e5deca191a2bb4748c4e7b6)
+-- CPM: Adding package spdlog@1.15.2 (v1.15.2 at $PROJECT/.cpmcache/spdlog/b1c2586bb5c35a7929362e87f62433eb68206873)
+-- tt-logger: using spdlog target spdlog::spdlog
+-- CPM: Adding package tt-logger@1.1.8 (v1.1.8 at $PROJECT/.cpmcache/tt-logger/d2339ce68562cae34cd95f3fece7fd94eb0529b7)
+-- CPM: Adding package cxxopts@0 (dbf4c6a66816f6c3872b46cc6af119ad227e04e1 at $PROJECT/.cpmcache/cxxopts/dda70ad5c1afdb5368541192bace55dbcd7872e3)
+-- CPM: Adding package nanobind@2.10.2 (v2.10.2 at $PROJECT/.cpmcache/nanobind/ecb3880ad950ee63406ff66a5563d380c7994aa7)
+-- CPM: Adding package umd_asio@ (asio-1-30-2 at $PROJECT/.cpmcache/umd_asio/83a029aeca9a00050695989a093d0cc1fcd67ba8)
+-- 
+-- ==================== UMD configuration summary ====================
+--   CMAKE_BUILD_TYPE = Release
+--   TT_EMULE_PATH = 
+--   TT_UMD_BUILD_ALL = OFF
+--   TT_UMD_BUILD_EMULE = OFF
+--   TT_UMD_BUILD_EXAMPLES = OFF
+--   TT_UMD_BUILD_JTAG = OFF
+--   TT_UMD_BUILD_PIP = 
+--   TT_UMD_BUILD_PYTHON = OFF
+--   TT_UMD_BUILD_SIMULATION = ON
+--   TT_UMD_BUILD_STATIC = OFF
+--   TT_UMD_BUILD_TESTS = OFF
+--   TT_UMD_BUILD_TOOLS = OFF
+--   TT_UMD_ENABLE_CLANG_TIDY = OFF
+--   TT_UMD_ENABLE_LOGGING = OFF
+--   TT_UMD_ENABLE_TRACY = OFF
+-- ===================================================================
+-- Configuring done (0.7s)
+-- Generating done (0.2s)
+-- Build files have been written to: $PROJECT/build-umd
++ timeout 1800 $TOOLCHAIN_VENV/bin/cmake --build build-umd --target umd_demo allocator_examples --parallel 2
+[0/2] Re-checking globbed directories...
+[1/107] Linking CXX static library _deps/spdlog-build/libspdlog.a
+[2/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/arch/architecture_implementation.cpp.o
+[3/107] Building CXX object CMakeFiles/tt_transfer_umd.dir/src/umd_backend.cpp.o
+[4/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/arch/architecture_registers.cpp.o
+[5/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/arch/architecture_tlbs.cpp.o
+[6/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/chip/chip.cpp.o
+[7/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/chip/mock_chip.cpp.o
+[8/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/chip/local_chip.cpp.o
+[9/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/chip/remote_chip.cpp.o
+[10/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/chip_helpers/sysmem_manager.cpp.o
+[11/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/chip_helpers/simulation_sysmem_manager.cpp.o
+[12/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/chip_helpers/silicon_sysmem_manager.cpp.o
+[13/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/chip_helpers/sysmem_buffer.cpp.o
+[14/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/pcie/tlb_window.cpp.o
+[15/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/pcie/io_window_reconfigure.cpp.o
+[16/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/chip_helpers/tlb_manager.cpp.o
+[17/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/io_window/io_window_target.cpp.o
+[18/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/pcie/silicon_tlb_window.cpp.o
+[19/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/pcie/device_memcpy.cpp.o
+[20/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/pcie/silicon_tlb_handle.cpp.o
+[21/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/tt_device_model/wormhole_tt_device_model.cpp.o
+[22/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/cluster.cpp.o
+[23/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/tt_device_model/simulation_tt_device_model.cpp.o
+[24/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/tt_device_model/blackhole_tt_device_model.cpp.o
+[25/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/tt_device/ethernet_broadcast.cpp.o
+[26/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/coordinates/coordinate_manager.cpp.o
+[27/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/arch/wormhole_implementation.cpp.o
+[28/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/arch/blackhole_implementation.cpp.o
+[29/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/arch/grendel_implementation.cpp.o
+[30/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/cpuset_lib.cpp.o
+[31/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/logging/config.cpp.o
+[32/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/hugepage.cpp.o
+[33/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/types/tlb.cpp.o
+[34/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/pcie/pci_device.cpp.o
+[35/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/tt_device/blackhole_tt_device.cpp.o
+[36/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/tt_device/tt_device.cpp.o
+[37/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/cluster_descriptor.cpp.o
+[38/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/tt_device/tt_device_error.cpp.o
+[39/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/tt_device/hang_detection/hang_detector.cpp.o
+[40/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/tt_device/wormhole_tt_device.cpp.o
+[41/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/tt_device/hang_detection/hang_detector_implementation.cpp.o
+[42/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/tt_device/hang_detection/wormhole_hang_detector.cpp.o
+[43/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/tt_device/hang_detection/blackhole_hang_detector.cpp.o
+[44/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/tt_device/firmware/blackhole_arc_apb.cpp.o
+[45/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/tt_device/firmware/wormhole_arc_window.cpp.o
+[46/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/tt_device/firmware/blackhole_device_firmware.cpp.o
+[47/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/tt_device/protocol/pcie_protocol.cpp.o
+[48/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/tt_device/firmware/wormhole_device_firmware.cpp.o
+[49/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/tt_device/protocol/remote_protocol.cpp.o
+[50/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/tt_device/protocol/jtag_protocol.cpp.o
+[51/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/tt_device/protocol/pcie_dma/wormhole_dma_transfer.cpp.o
+[52/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/tt_device/protocol/pcie_dma/blackhole_dma_transfer.cpp.o
+[53/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/firmware/firmware_info_provider_implementation.cpp.o
+[54/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/types/risc_type.cpp.o
+[55/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/firmware/firmware_utils.cpp.o
+[56/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/soc_descriptor.cpp.o
+[57/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/soc_arch_descriptor.cpp.o
+[58/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/coordinates/wormhole_coordinate_manager.cpp.o
+[59/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/coordinates/blackhole_coordinate_manager.cpp.o
+[60/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/coordinates/quasar_coordinate_manager.cpp.o
+[61/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/arc/wormhole_arc_telemetry_reader.cpp.o
+[62/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/arc/blackhole_arc_telemetry_reader.cpp.o
+[63/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/arc/arc_telemetry_reader.cpp.o
+[64/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/arc/smbus_arc_telemetry_reader.cpp.o
+[65/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/arc/blackhole_arc_message_queue.cpp.o
+[66/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/noc_access.cpp.o
+[67/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/arc/spi_tt_device.cpp.o
+[68/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/warm_reset_with_recovery.cpp.o
+[69/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/types/xy_pair.cpp.o
+[70/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/warm_reset.cpp.o
+[71/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/utils/lock_manager.cpp.o
+[72/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/utils/robust_mutex.cpp.o
+[73/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/utils/kmd_mutex.cpp.o
+[74/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/topology/topology_discovery_blackhole.cpp.o
+[75/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/topology/topology_discovery.cpp.o
+[76/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/topology/topology_discovery_wormhole.cpp.o
+[77/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/topology/topology_discovery_error.cpp.o
+[78/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/tt_device/remote_communication.cpp.o
+[79/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/tt_device/remote_communication_legacy_firmware.cpp.o
+[80/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/jtag/jtag_device.cpp.o
+[81/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/jtag/jtag.cpp.o
+[82/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/arc/blackhole_spi_tt_device.cpp.o
+[83/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/arc/wormhole_spi_tt_device.cpp.o
+[84/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/simulation/simulation_server_socket.cpp.o
+[85/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/simulation/simulation_client.cpp.o
+[86/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/simulation/simulation_server_transport.cpp.o
+[87/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/simulation/simulation_chip.cpp.o
+[88/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/simulation/simulation_server_protocol.cpp.o
+[89/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/simulation/simulation_connector.cpp.o
+[90/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/simulation/simulation_device_identity.cpp.o
+[91/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/simulation/simulation_host.cpp.o
+[92/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/simulation/rtl_sim_communicator.cpp.o
+[93/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/simulation/tt_sim_communicator.cpp.o
+[94/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/tt_device/simulation_tt_device.cpp.o
+[95/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/tt_device/rtl_simulation_tt_device.cpp.o
+[96/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/chip_helpers/simulation_tlb_allocator.cpp.o
+[97/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/tt_device/tt_sim_tt_device.cpp.o
+[98/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/tt_device/simulation_device_factory.cpp.o
+[99/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/pcie/tt_sim_tlb_window.cpp.o
+[100/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/pcie/rtl_sim_tlb_window.cpp.o
+[101/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/pcie/tt_sim_tlb_handle.cpp.o
+[102/107] Building CXX object umd/device/CMakeFiles/tt-umd.dir/pcie/rtl_sim_tlb_handle.cpp.o
+[103/107] Linking CXX shared library umd/lib/libtt-umd.so.0.1.0
+[104/107] Creating library symlink umd/lib/libtt-umd.so.0 umd/lib/libtt-umd.so
+[105/107] Linking CXX static library libtt_transfer_umd.a
+[106/107] Linking CXX executable allocator_examples
+[107/107] Linking CXX executable umd_demo
++ timeout 30 ./build-umd/allocator_examples
+PASS upstream_baseline_allocate_free
+PASS project_mixed_size_release_sequence
+PASS project_nonzero_blackhole_bar4
+linked_real_umd_allocator=1 examples_passed=3 allocated_4gib_ram=0
++ python3 scripts/run_umd.py build-umd/umd_demo third_party/ttsim/libttsim_wh_aarch64.so --output results/umd-20260909 --repeats 5 --timeout 60
+{"sample": 0, "utc_start": "2026-09-09T02:16:12.224960+00:00", "exit_code": 0, "classification": "pass", "process_wall_seconds": 0.03189006820321083, "constructor_us": "9711.25", "direct_roundtrip_us": "32.44", "fifo_roundtrip_us": "100.761"}
+{"sample": 1, "utc_start": "2026-09-09T02:16:12.257260+00:00", "exit_code": 0, "classification": "pass", "process_wall_seconds": 0.015862232074141502, "constructor_us": "5106.1", "direct_roundtrip_us": "49.2", "fifo_roundtrip_us": "91.601"}
+{"sample": 2, "utc_start": "2026-09-09T02:16:12.273511+00:00", "exit_code": 0, "classification": "pass", "process_wall_seconds": 0.015864672139286995, "constructor_us": "5174.78", "direct_roundtrip_us": "33.36", "fifo_roundtrip_us": "87.48"}
+{"sample": 3, "utc_start": "2026-09-09T02:16:12.289803+00:00", "exit_code": 0, "classification": "pass", "process_wall_seconds": 0.01585795357823372, "constructor_us": "5041.34", "direct_roundtrip_us": "34.881", "fifo_roundtrip_us": "90.32"}
+{"sample": 4, "utc_start": "2026-09-09T02:16:12.306060+00:00", "exit_code": 0, "classification": "pass", "process_wall_seconds": 0.015831753611564636, "constructor_us": "4980.06", "direct_roundtrip_us": "31.6", "fifo_roundtrip_us": "72.601"}
++ du -sh third_party/tt-umd third_party/ttsim build-umd
+13M	third_party/tt-umd
+204K	third_party/ttsim
+61M	build-umd
++ find build-umd/_deps -maxdepth 2 -name .git -type d -print
++ read -r metadata
++ df -h .
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda1       146G   41G  105G  28% /
++ date -u
+Wed Sep  9 02:16:12 UTC 2026
++ runtime_cleanup
++ '[' -f $PROJECT_BASE/.heavy-build.lock/owner ']'
+++ head -n1 $PROJECT_BASE/.heavy-build.lock/owner
++ '[' tt-transfer-runtime:1446677:20260909T021131Z = tt-transfer-runtime:1446677:20260909T021131Z ']'
++ rm $PROJECT_BASE/.heavy-build.lock/owner
++ rmdir $PROJECT_BASE/.heavy-build.lock
++ echo 'Runtime shared build lock released'
+Runtime shared build lock released

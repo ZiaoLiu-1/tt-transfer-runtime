@@ -1,0 +1,10 @@
+PASS synthetic_runner_classification=incomplete_output
+PASS synthetic_runner_classification=nonzero_exit
+PASS synthetic_runner_classification=mismatch
+PASS synthetic_runner_classification=timeout
+PASS synthetic_runner_classification=signal_crash
+PASS synthetic_runner_classification=pass
+PASS synthetic_runner_classification=startup_error
+PASS synthetic_timeout_exit_before=SIGTERM
+PASS synthetic_timeout_exit_before=SIGKILL
+synthetic_classifier_cases_passed=9; actual_umd_executions=0

@@ -1,0 +1,15 @@
+{
+  "utc": "2026-09-09T02:28:25.009880+00:00",
+  "repository": {
+    "isPrivate": true,
+    "nameWithOwner": "ZiaoLiu-1/tt-transfer-runtime",
+    "url": "https://github.com/ZiaoLiu-1/tt-transfer-runtime",
+    "visibility": "PRIVATE"
+  },
+  "actions_permissions": {
+    "enabled": false,
+    "sha_pinning_required": false
+  },
+  "workflow_runs_total": 0,
+  "purpose": "Private repository; local validation only; no cloud CI result claimed."
+}

@@ -1,0 +1,174 @@
+{
+  "utc_recorded": "2026-09-09T02:24:52.023583+00:00",
+  "system": {
+    "os": "Linux",
+    "release": "6.8.0-1044-oracle",
+    "machine": "aarch64",
+    "logical_cpus": 4,
+    "load_average": [
+      0.04296875,
+      0.3984375,
+      0.98388671875
+    ],
+    "python": "3.10.12"
+  },
+  "project_commit": "c5475021af8886c71b469a4fb452c8ddf240f744",
+  "project_status": "M scripts/run_umd.py\n M src/umd_backend.cpp\n?? .cpmcache/\n?? results/umd-20260909/\n?? results/umd-build/",
+  "umd_checkout_commit": "1a513b2ca8a8955db1fe306b6d65dee2ffe5c9bc",
+  "umd_checkout_status": "",
+  "project_source_sha256": {
+    "cmake/Umd.cmake": "5d6b88bb302bd4438f8f516f3784e8f8899564aecbc7f6fd30fe20efe1951391",
+    "examples/allocator_examples.cpp": "36a3bde160d523bb9323e2bd8834945689a4d918e3f18c75da17e12a9351ea8b",
+    "examples/umd_demo.cpp": "7fc15e055dd8a98eaa003bab239f046b58b0048ae7be6c7266c09b5e4c3066c3",
+    "include/tt_transfer/cpu_backend.hpp": "b58381cb5bef115a302f96029c367da7777ec3905fb2a3571b7441656c9a0461",
+    "include/tt_transfer/runtime.hpp": "a0b3c900a33201d9cde17999c91d8033a94d183f957a706af7630a906c38412d",
+    "include/tt_transfer/umd_backend.hpp": "c8f2e2600a4b745ee2f689667e925e1ab775b1e9abef46ef12cf4c4adb92474f",
+    "scripts/build_umd_linux.sh": "6a2af1ea7ff6dbb44ad92d2530447b6891cacfbbea23ddc982d8d49c58659407",
+    "scripts/fetch_upstream.py": "4e708b2446cd0e6695c19640c48174a2dfa636f044fb6e81ebaf320f66c7a98d",
+    "scripts/measure_cpu.py": "234881fa78cd017e0d2b5a07a0e327a34dbaaad59c09ff97eb73c5c03d28b9bb",
+    "scripts/run_umd.py": "8983f3e410ed755573b5ca1d2873521255345b3a5fbaf21a2b4c25eaf6895a04",
+    "scripts/verify_host.py": "99d244ec3f7c301d2edd1558b2c4ac59e0e713b436bbcf02179dee97a06a0ee1",
+    "src/cpu_backend.cpp": "9e799ec33c52f4de937e6dbcf2f2a969e0f2729fcdce07085f82156bcbc55894",
+    "src/demo.cpp": "49463abdf5380d1959f282741615f0794236c0f68884be5f751cb97b018daa5a",
+    "src/runtime.cpp": "83f17851edb1b200fe7402b7e49b454f71b3b781590851aa55d47b8ef16c7ee8",
+    "src/umd_backend.cpp": "55d04d5180df398d1b63e533b5845944a6182132973ce1de41b17e1714fe530e",
+    "CMakeLists.txt": "97236d61ef067b297b3a768cfe156ae70e6c043d579df934174898cac7a9c293",
+    "provenance.json": "d82963d385235f426002087d872c4d874b69a4a27b735176772a0368e6da28bf"
+  },
+  "provenance": {
+    "schema_version": 1,
+    "umd": {
+      "repository": "https://github.com/tenstorrent/tt-umd",
+      "commit": "1a513b2ca8a8955db1fe306b6d65dee2ffe5c9bc",
+      "license": "Apache-2.0",
+      "integration": "Unmodified upstream library via add_subdirectory; project allocator executable links the real implementation",
+      "retained_source": [
+        {
+          "upstream_path": "device/chip_helpers/simulation_tlb_allocator.cpp",
+          "local_path": "third_party/upstream-source/simulation_tlb_allocator.cpp",
+          "sha256": "279b8b307191eb7a5228de312778c4f41f4c2fec28bf6adf931a409dd0ee1398"
+        },
+        {
+          "upstream_path": "device/api/umd/device/chip_helpers/simulation_tlb_allocator.hpp",
+          "local_path": "third_party/upstream-source/simulation_tlb_allocator.hpp",
+          "sha256": "c19d9026594a89f00f2adb2d9d79d340989967260bf64f4659e0cb4c42159192"
+        },
+        {
+          "upstream_path": "LICENSE",
+          "local_path": "third_party/upstream-source/LICENSE",
+          "sha256": "c79d4275851ea4e491ef29e27b20252095afb6c89609066d4472c17aa5e5f24b"
+        }
+      ],
+      "patches": []
+    },
+    "ttsim": {
+      "repository": "https://github.com/tenstorrent/ttsim",
+      "source_reference_commit": "89bdc5eb726c4f1ebbe597e03b1b9cdf7622c779",
+      "release": "v1.10.6",
+      "asset": "libttsim_wh_aarch64.so",
+      "asset_bytes": 198664,
+      "asset_url": "https://github.com/tenstorrent/ttsim/releases/download/v1.10.6/libttsim_wh_aarch64.so",
+      "asset_sha256": "d38142c9d94526a5d6b48e5c0711efd718ffaed9270150c5556da0de788214ae",
+      "license": "Apache-2.0",
+      "scope": "Linux aarch64 single-chip Wormhole; downloaded release binary, not a source build"
+    },
+    "descriptor": {
+      "repository": "https://github.com/tenstorrent/tt-metal",
+      "commit": "89e1256c982a5b4739d173bcc446c8c748a44b40",
+      "upstream_path": "tt_metal/soc_descriptors/wormhole_b0_80_arch.yaml",
+      "local_path": "third_party/upstream-source/wormhole_b0_80_arch.yaml",
+      "runtime_name": "soc_descriptor.yaml",
+      "sha256": "24fd3dfae80435a7d9113e255d6d6af9cdf83f6ae3b1c385e1d48a24795ccf49",
+      "license": "Apache-2.0"
+    },
+    "authorship": {
+      "upstream_allocator": "Tenstorrent; retained unmodified; no project algorithm originality claim",
+      "project_adapter_and_examples": "Project-specific implementation produced with Codex assistance; learner understanding not yet assessed"
+    }
+  },
+  "binary_name": "umd_demo",
+  "binary_sha256": "e9c308daa071e5b3aa27a26b965e70c28ed1c4df4652365e5335f2126a8466a4",
+  "umd_built_library_sha256": {
+    "umd/lib/libtt-umd.so.0.1.0": "61e918d14fd65e5bc345e7ec69bdf8acd68b934fff02b054d4abd711d50bca0e",
+    "umd/lib/libtt-umd.so": "61e918d14fd65e5bc345e7ec69bdf8acd68b934fff02b054d4abd711d50bca0e",
+    "umd/lib/libtt-umd.so.0": "61e918d14fd65e5bc345e7ec69bdf8acd68b934fff02b054d4abd711d50bca0e"
+  },
+  "library_name": "libttsim_wh_aarch64.so",
+  "library_sha256": "d38142c9d94526a5d6b48e5c0711efd718ffaed9270150c5556da0de788214ae",
+  "descriptor_sha256": "24fd3dfae80435a7d9113e255d6d6af9cdf83f6ae3b1c385e1d48a24795ccf49",
+  "compiler": "$TOOLCHAIN_PREFIX/bin/clang++-20",
+  "compiler_version": "Ubuntu clang version 20.1.8 (++20250708123929+0de59a293f7a-1~exp1~20250708003944.130)\nTarget: aarch64-unknown-linux-gnu\nThread model: posix\nInstalledDir: $TOOLCHAIN_PREFIX/lib/llvm-20/bin",
+  "cmake_cache_sha256": "ecafef668c3bfee6160c2c265e9f9676c5ed745e4d4d66a9337ee2c4a6904d93",
+  "compile_commands_sha256": "596edc04b44f71ddacdc7897ca217526f9c3bbf858dba472ba627db6217b5163",
+  "project_compile_commands": [
+    {
+      "directory": "$PROJECT/build-umd",
+      "command": "$TOOLCHAIN_PREFIX/bin/clang++-20 -I$PROJECT/include --gcc-toolchain=$TOOLCHAIN_PREFIX -isystem $TOOLCHAIN_PREFIX/include -isystem $TOOLCHAIN_PREFIX/include/aarch64-linux-gnu -O3 -DNDEBUG -std=gnu++20 -Wall -Wextra -Wpedantic -Werror -o CMakeFiles/tt_transfer.dir/src/runtime.cpp.o -c $PROJECT/src/runtime.cpp",
+      "file": "$PROJECT/src/runtime.cpp",
+      "output": "CMakeFiles/tt_transfer.dir/src/runtime.cpp.o"
+    },
+    {
+      "directory": "$PROJECT/build-umd",
+      "command": "$TOOLCHAIN_PREFIX/bin/clang++-20 -I$PROJECT/include --gcc-toolchain=$TOOLCHAIN_PREFIX -isystem $TOOLCHAIN_PREFIX/include -isystem $TOOLCHAIN_PREFIX/include/aarch64-linux-gnu -O3 -DNDEBUG -std=gnu++20 -Wall -Wextra -Wpedantic -Werror -o CMakeFiles/tt_transfer.dir/src/cpu_backend.cpp.o -c $PROJECT/src/cpu_backend.cpp",
+      "file": "$PROJECT/src/cpu_backend.cpp",
+      "output": "CMakeFiles/tt_transfer.dir/src/cpu_backend.cpp.o"
+    },
+    {
+      "directory": "$PROJECT/build-umd",
+      "command": "$TOOLCHAIN_PREFIX/bin/clang++-20 -I$PROJECT/include --gcc-toolchain=$TOOLCHAIN_PREFIX -isystem $TOOLCHAIN_PREFIX/include -isystem $TOOLCHAIN_PREFIX/include/aarch64-linux-gnu -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles/transfer_demo.dir/src/demo.cpp.o -c $PROJECT/src/demo.cpp",
+      "file": "$PROJECT/src/demo.cpp",
+      "output": "CMakeFiles/transfer_demo.dir/src/demo.cpp.o"
+    },
+    {
+      "directory": "$PROJECT/build-umd",
+      "command": "$TOOLCHAIN_PREFIX/bin/clang++-20 -DFMT_HEADER_ONLY=1 -DTT_UMD_BUILD_SIMULATION -I$PROJECT/include -I$PROJECT/third_party/tt-umd/device/api -isystem $PROJECT/.cpmcache/fmt/69912fb6b71fcb1f7e5deca191a2bb4748c4e7b6/include --gcc-toolchain=$TOOLCHAIN_PREFIX -isystem $TOOLCHAIN_PREFIX/include -isystem $TOOLCHAIN_PREFIX/include/aarch64-linux-gnu -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles/tt_transfer_umd.dir/src/umd_backend.cpp.o -c $PROJECT/src/umd_backend.cpp",
+      "file": "$PROJECT/src/umd_backend.cpp",
+      "output": "CMakeFiles/tt_transfer_umd.dir/src/umd_backend.cpp.o"
+    },
+    {
+      "directory": "$PROJECT/build-umd",
+      "command": "$TOOLCHAIN_PREFIX/bin/clang++-20 -I$PROJECT/include --gcc-toolchain=$TOOLCHAIN_PREFIX -isystem $TOOLCHAIN_PREFIX/include -isystem $TOOLCHAIN_PREFIX/include/aarch64-linux-gnu -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles/umd_demo.dir/examples/umd_demo.cpp.o -c $PROJECT/examples/umd_demo.cpp",
+      "file": "$PROJECT/examples/umd_demo.cpp",
+      "output": "CMakeFiles/umd_demo.dir/examples/umd_demo.cpp.o"
+    },
+    {
+      "directory": "$PROJECT/build-umd",
+      "command": "$TOOLCHAIN_PREFIX/bin/clang++-20 -DFMT_HEADER_ONLY=1 -DTT_UMD_BUILD_SIMULATION -I$PROJECT/third_party/tt-umd/device/api -isystem $PROJECT/.cpmcache/fmt/69912fb6b71fcb1f7e5deca191a2bb4748c4e7b6/include --gcc-toolchain=$TOOLCHAIN_PREFIX -isystem $TOOLCHAIN_PREFIX/include -isystem $TOOLCHAIN_PREFIX/include/aarch64-linux-gnu -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles/allocator_examples.dir/examples/allocator_examples.cpp.o -c $PROJECT/examples/allocator_examples.cpp",
+      "file": "$PROJECT/examples/allocator_examples.cpp",
+      "output": "CMakeFiles/allocator_examples.dir/examples/allocator_examples.cpp.o"
+    }
+  ],
+  "build_cache_flags": [
+    "CMAKE_BUILD_TYPE:STRING=Release",
+    "CMAKE_CXX_FLAGS:STRING=--gcc-toolchain=$TOOLCHAIN_PREFIX -isystem $TOOLCHAIN_PREFIX/include -isystem $TOOLCHAIN_PREFIX/include/aarch64-linux-gnu",
+    "CMAKE_CXX_FLAGS_DEBUG:STRING=-g",
+    "CMAKE_CXX_FLAGS_MINSIZEREL:STRING=-Os -DNDEBUG",
+    "CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG",
+    "CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG",
+    "TT_TRANSFER_SANITIZER:STRING=",
+    "TT_TRANSFER_WITH_UMD:BOOL=ON",
+    "TT_UMD_BUILD_ALL:BOOL=OFF",
+    "TT_UMD_BUILD_EMULE:BOOL=OFF",
+    "TT_UMD_BUILD_EXAMPLES:BOOL=OFF",
+    "TT_UMD_BUILD_JTAG:BOOL=OFF",
+    "TT_UMD_BUILD_PYTHON:BOOL=OFF",
+    "TT_UMD_BUILD_RDMA:BOOL=OFF",
+    "TT_UMD_BUILD_SIMULATION:BOOL=ON",
+    "TT_UMD_BUILD_STATIC:BOOL=OFF",
+    "TT_UMD_BUILD_TESTS:BOOL=OFF",
+    "TT_UMD_BUILD_TOOLS:BOOL=OFF",
+    "TT_UMD_ENABLE_CLANG_TIDY:BOOL=OFF",
+    "TT_UMD_ENABLE_LOGGING:BOOL=OFF",
+    "TT_UMD_ENABLE_TRACY:BOOL=OFF",
+    "TT_UMD_SOURCE_DIR:PATH=$PROJECT/third_party/tt-umd",
+    "CMAKE_CXX_FLAGS-ADVANCED:INTERNAL=1",
+    "CMAKE_CXX_FLAGS_DEBUG-ADVANCED:INTERNAL=1",
+    "CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1",
+    "CMAKE_CXX_FLAGS_RELEASE-ADVANCED:INTERNAL=1",
+    "CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1"
+  ],
+  "repeats": 5,
+  "timeout_seconds": 60.0,
+  "metric_boundary": "Host software wall time only; simulator barrier is a no-op; no silicon timing",
+  "redaction": "Local project and home path prefixes replaced by $PROJECT and $HOME; no routing recorded"
+}

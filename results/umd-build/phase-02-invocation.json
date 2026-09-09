@@ -1,0 +1,10 @@
+{
+  "description": "Exact executed phase-02 stdin script with three environment path definitions generalized. Original hash binds the execution script; command and option bodies preserved.",
+  "original_sha256": "06a34df732cc96dcc6f7ed99f42dd518fe6ccefdb9b0853e9fb3b3ce7c76c0e0",
+  "archived_sha256": "6dc8a6e7ff7f2c7cf4f9ffdc2e3214c4f2c32e06c1f6b5e58e13b5fdf52a14ab",
+  "required_path_variables": [
+    "PROJECT_BASE",
+    "TOOLCHAIN_PREFIX",
+    "TOOLCHAIN_VENV"
+  ]
+}

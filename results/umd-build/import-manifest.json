@@ -1,0 +1,230 @@
+{
+  "redactions": "Only project/home/toolchain path prefixes and private SSH routing; technical output and values preserved",
+  "files": [
+    {
+      "path": "umd-build/artifact-identity.log",
+      "original_sha256": "4556eebb79b80ce68e4af2ba797aa9d9673c237bf79cfaba8c73b12786c1e4c8",
+      "imported_sha256": "47e98cb88158d65dd5730faff008a2c039a715fe30312b77d5a0489735875669"
+    },
+    {
+      "path": "umd-build/dependencies.json",
+      "original_sha256": "16331352f69ce231fd9304f34c4a154c2cd70b0e05c33a1e53f47a812380e26b",
+      "imported_sha256": "16331352f69ce231fd9304f34c4a154c2cd70b0e05c33a1e53f47a812380e26b"
+    },
+    {
+      "path": "umd-build/dependency-license-details.json",
+      "original_sha256": "9dd034ad22bde398a67c34e1f2a59b2ca3e194b44ff2b6406d7bc8cdcdfccaea",
+      "imported_sha256": "9dd034ad22bde398a67c34e1f2a59b2ca3e194b44ff2b6406d7bc8cdcdfccaea"
+    },
+    {
+      "path": "umd-build/final-source-changes.patch",
+      "original_sha256": "0a66cc988c552372410bbc1f82657beadd303fd615488151d08ab499c6096ba3",
+      "imported_sha256": "0a66cc988c552372410bbc1f82657beadd303fd615488151d08ab499c6096ba3"
+    },
+    {
+      "path": "umd-build/native-environment.log",
+      "original_sha256": "ee3f22a54493c29836b00fefc3c65375ca12652c78076234fd713ed6e128c15f",
+      "imported_sha256": "820c1d61ef47ca2a0e77ffd46aa1c7a724b9941174f0b858c1f66602eccdc0af"
+    },
+    {
+      "path": "umd-build/phase-01.log",
+      "original_sha256": "63f6eedc9a38ea150a60d1d3436f6bc9e6e95066f79cda2f3a7d58b9db3e963e",
+      "imported_sha256": "b2ba686f82a540d40207f229172c77b2786320ba2fee58b36750efbb0e87d2b9"
+    },
+    {
+      "path": "umd-build/phase-02.log",
+      "original_sha256": "50be855d0aa8d18375b4f8923f0a902b6c85427080158263fe5938517ec3cfb6",
+      "imported_sha256": "f453c63fd7ba63de0fa6b0838183263f44172937c3b5d3ca8e120cc0a420eb08"
+    },
+    {
+      "path": "umd-build/phase-final.log",
+      "original_sha256": "61108132c6cde66d16ac3255b988a7e4e256c5713d9061fbd21f5713456de0ca",
+      "imported_sha256": "f70da5c10395addf52fc692c4319d679f0d0bb251be1480533dc5e9559869274"
+    },
+    {
+      "path": "umd-build/post-run-identity-20260909.json",
+      "original_sha256": "6a7c6e73ba7bbf58cc591f9032c15aa07d0fb1dc3963287e4d9f411b01966c6a",
+      "imported_sha256": "6a7c6e73ba7bbf58cc591f9032c15aa07d0fb1dc3963287e4d9f411b01966c6a"
+    },
+    {
+      "path": "umd-build/post-run-identity-final.json",
+      "original_sha256": "0e47527d4447762a1ce611795d54d6d7697087d2c46cb9d376a29f042934c33e",
+      "imported_sha256": "0e47527d4447762a1ce611795d54d6d7697087d2c46cb9d376a29f042934c33e"
+    },
+    {
+      "path": "umd-build/source-changes.patch",
+      "original_sha256": "1938a139baa02077f3859b106e2ad49865887c75706832c53563e917eeaf2953",
+      "imported_sha256": "1938a139baa02077f3859b106e2ad49865887c75706832c53563e917eeaf2953"
+    },
+    {
+      "path": "umd-20260909/run-metadata.json",
+      "original_sha256": "091c7d227010edaa400a0ffd4ea2f795782911123bb850496bfb105a2e446e9f",
+      "imported_sha256": "5f1176ed36e950dca0edfda3ec49b2d34a023540c67ca738b087f44a3a8c1409"
+    },
+    {
+      "path": "umd-20260909/sample-00.json",
+      "original_sha256": "adb41d694527d736f8499fd7e269a55f4fe4d9bd4bdb1ee33ca38b237f71a5b4",
+      "imported_sha256": "adb41d694527d736f8499fd7e269a55f4fe4d9bd4bdb1ee33ca38b237f71a5b4"
+    },
+    {
+      "path": "umd-20260909/sample-00.stderr.log",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "imported_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "umd-20260909/sample-00.stdout.log",
+      "original_sha256": "ac20ea47e5e97bf6204aabb735996ac06c9c114e5802b2368796e00e322a0ac5",
+      "imported_sha256": "ac20ea47e5e97bf6204aabb735996ac06c9c114e5802b2368796e00e322a0ac5"
+    },
+    {
+      "path": "umd-20260909/sample-01.json",
+      "original_sha256": "be186c5a3d77d41e8aa7c83eba66b0fdeb21637d5571eb8bb0a1118ec7ceecf2",
+      "imported_sha256": "be186c5a3d77d41e8aa7c83eba66b0fdeb21637d5571eb8bb0a1118ec7ceecf2"
+    },
+    {
+      "path": "umd-20260909/sample-01.stderr.log",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "imported_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "umd-20260909/sample-01.stdout.log",
+      "original_sha256": "dac9baec4ea6fb8c3645638b3fb8e1c54a4a15b3459663b4846de712a19104e7",
+      "imported_sha256": "dac9baec4ea6fb8c3645638b3fb8e1c54a4a15b3459663b4846de712a19104e7"
+    },
+    {
+      "path": "umd-20260909/sample-02.json",
+      "original_sha256": "9d46e07f3027283d626c473ba5239c1eadb87450abee509c6b7c2026d0ce9383",
+      "imported_sha256": "9d46e07f3027283d626c473ba5239c1eadb87450abee509c6b7c2026d0ce9383"
+    },
+    {
+      "path": "umd-20260909/sample-02.stderr.log",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "imported_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "umd-20260909/sample-02.stdout.log",
+      "original_sha256": "79279df0304663ececfe2ef941c8693384535a3914d989e769a4146c02004468",
+      "imported_sha256": "79279df0304663ececfe2ef941c8693384535a3914d989e769a4146c02004468"
+    },
+    {
+      "path": "umd-20260909/sample-03.json",
+      "original_sha256": "7ba5dff714cccf405b34be0586c3bbfdb4f4fd2c178eaa7e2dd45be58d627d97",
+      "imported_sha256": "7ba5dff714cccf405b34be0586c3bbfdb4f4fd2c178eaa7e2dd45be58d627d97"
+    },
+    {
+      "path": "umd-20260909/sample-03.stderr.log",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "imported_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "umd-20260909/sample-03.stdout.log",
+      "original_sha256": "4a9a2fd0ca5d55432a7183a3c9f11a2d627fab1f15950436a3a4e74e1f95d949",
+      "imported_sha256": "4a9a2fd0ca5d55432a7183a3c9f11a2d627fab1f15950436a3a4e74e1f95d949"
+    },
+    {
+      "path": "umd-20260909/sample-04.json",
+      "original_sha256": "f8130620356d07ecdec24b343e40ac4666fa4cd17a11e29b74f98e4629842f82",
+      "imported_sha256": "f8130620356d07ecdec24b343e40ac4666fa4cd17a11e29b74f98e4629842f82"
+    },
+    {
+      "path": "umd-20260909/sample-04.stderr.log",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "imported_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "umd-20260909/sample-04.stdout.log",
+      "original_sha256": "fbe0c7e6124c9de5925d5e4070e3cb379abdf56c603080c6b4e0b9a8141208fb",
+      "imported_sha256": "fbe0c7e6124c9de5925d5e4070e3cb379abdf56c603080c6b4e0b9a8141208fb"
+    },
+    {
+      "path": "umd-20260909/samples.csv",
+      "original_sha256": "2f6746fe1c9c57fd27ebbcdb698a3712182158ab35a05bd8d9b8675bdee22dd4",
+      "imported_sha256": "2f6746fe1c9c57fd27ebbcdb698a3712182158ab35a05bd8d9b8675bdee22dd4"
+    },
+    {
+      "path": "umd-final/run-metadata.json",
+      "original_sha256": "678e29e4037e8f0501e241c1a4f531b3ea84dad527f275f426bb4b5118a0e42e",
+      "imported_sha256": "3b38c23eeb27f1743cac5e1d5c6b48b9a1ed0ed4d724a934eb80f15d87298172"
+    },
+    {
+      "path": "umd-final/sample-00.json",
+      "original_sha256": "229b635e2968fd774ca976f54bf4b0940d57550e8fec9c810e6a18d0634864fc",
+      "imported_sha256": "229b635e2968fd774ca976f54bf4b0940d57550e8fec9c810e6a18d0634864fc"
+    },
+    {
+      "path": "umd-final/sample-00.stderr.log",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "imported_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "umd-final/sample-00.stdout.log",
+      "original_sha256": "0a89f7eb8a5c33a63981ba6b3c7b5e4602a8a9a96125372f73c1a4204e2becbb",
+      "imported_sha256": "0a89f7eb8a5c33a63981ba6b3c7b5e4602a8a9a96125372f73c1a4204e2becbb"
+    },
+    {
+      "path": "umd-final/sample-01.json",
+      "original_sha256": "5245792635f2a017d2ab678be00f021f7a017e4dcfd03ffe5714f80ac2825814",
+      "imported_sha256": "5245792635f2a017d2ab678be00f021f7a017e4dcfd03ffe5714f80ac2825814"
+    },
+    {
+      "path": "umd-final/sample-01.stderr.log",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "imported_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "umd-final/sample-01.stdout.log",
+      "original_sha256": "86b4ec5fee25d87591cc26533760ed73571773ce9f57211e285338f35bddc532",
+      "imported_sha256": "86b4ec5fee25d87591cc26533760ed73571773ce9f57211e285338f35bddc532"
+    },
+    {
+      "path": "umd-final/sample-02.json",
+      "original_sha256": "92d50d324849c06e8d0650e30b672a31628f3f25f0eb034d50111ce2cb899b05",
+      "imported_sha256": "92d50d324849c06e8d0650e30b672a31628f3f25f0eb034d50111ce2cb899b05"
+    },
+    {
+      "path": "umd-final/sample-02.stderr.log",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "imported_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "umd-final/sample-02.stdout.log",
+      "original_sha256": "bbec45cba3a9e4a9149e48b71b7269e58ab4701e251d9db03fbac32dc959e121",
+      "imported_sha256": "bbec45cba3a9e4a9149e48b71b7269e58ab4701e251d9db03fbac32dc959e121"
+    },
+    {
+      "path": "umd-final/sample-03.json",
+      "original_sha256": "709093d8ee0c652f8dd37d8040531ce5775b4fb1fa36aa5786cdd1d530a11d08",
+      "imported_sha256": "709093d8ee0c652f8dd37d8040531ce5775b4fb1fa36aa5786cdd1d530a11d08"
+    },
+    {
+      "path": "umd-final/sample-03.stderr.log",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "imported_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "umd-final/sample-03.stdout.log",
+      "original_sha256": "113cdae10f5bea732b35c129f14abc5dd047151bc026f715d8665e33a944dbc3",
+      "imported_sha256": "113cdae10f5bea732b35c129f14abc5dd047151bc026f715d8665e33a944dbc3"
+    },
+    {
+      "path": "umd-final/sample-04.json",
+      "original_sha256": "c850f21a2a9aaece796c9cded3149bc97e1c700c0e1649f11bfe1f041275a465",
+      "imported_sha256": "c850f21a2a9aaece796c9cded3149bc97e1c700c0e1649f11bfe1f041275a465"
+    },
+    {
+      "path": "umd-final/sample-04.stderr.log",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "imported_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "umd-final/sample-04.stdout.log",
+      "original_sha256": "581b62327c1d227a0dd76dbecdb37733dbefb1eeb7928dce05d74c91a79cab90",
+      "imported_sha256": "581b62327c1d227a0dd76dbecdb37733dbefb1eeb7928dce05d74c91a79cab90"
+    },
+    {
+      "path": "umd-final/samples.csv",
+      "original_sha256": "b4d19b5d40ab72c9351aab412bd29b734b2c42d0847c784c833b62903fa746d2",
+      "imported_sha256": "b4d19b5d40ab72c9351aab412bd29b734b2c42d0847c784c833b62903fa746d2"
+    }
+  ]
+}

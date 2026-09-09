@@ -1,0 +1,49 @@
+PRETTY_NAME="Ubuntu 22.04.3 LTS"
+NAME="Ubuntu"
+VERSION_ID="22.04"
+VERSION="22.04.3 LTS (Jammy Jellyfish)"
+VERSION_CODENAME=jammy
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=jammy
+glibc 2.35
+Architecture:                            aarch64
+CPU(s):                                  4
+Vendor ID:                               ARM
+Model name:                              Neoverse-N1
+Socket(s):                               1
+Ubuntu clang version 20.1.8 (++20250708123929+0de59a293f7a-1~exp1~20250708003944.130)
+Target: aarch64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: $TOOLCHAIN_PREFIX/lib/llvm-20/bin
+Found candidate GCC installation: $TOOLCHAIN_PREFIX/lib/gcc/aarch64-linux-gnu/12
+Selected GCC installation: $TOOLCHAIN_PREFIX/lib/gcc/aarch64-linux-gnu/12
+Candidate multilib: .;@m64
+Selected multilib: .;@m64
+ (in-process)
+ "$TOOLCHAIN_PREFIX/lib/llvm-20/bin/clang" -cc1 -triple aarch64-unknown-linux-gnu -E -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name null -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=non-leaf -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu generic -target-feature +v8a -target-feature +fp-armv8 -target-feature +neon -target-abi aapcs -debugger-tuning=gdb -fdebug-compilation-dir=$PROJECT -v -fcoverage-compilation-dir=$PROJECT -resource-dir $TOOLCHAIN_PREFIX/lib/llvm-20/lib/clang/20 -internal-isystem $TOOLCHAIN_PREFIX/lib/gcc/aarch64-linux-gnu/12/../../../../include/c++/12 -internal-isystem $TOOLCHAIN_PREFIX/lib/gcc/aarch64-linux-gnu/12/../../../../include/aarch64-linux-gnu/c++/12 -internal-isystem $TOOLCHAIN_PREFIX/lib/gcc/aarch64-linux-gnu/12/../../../../include/c++/12/backward -internal-isystem $TOOLCHAIN_PREFIX/lib/llvm-20/lib/clang/20/include -internal-isystem /usr/local/include -internal-isystem $TOOLCHAIN_PREFIX/lib/gcc/aarch64-linux-gnu/12/../../../../aarch64-linux-gnu/include -internal-externc-isystem /usr/include/aarch64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -ferror-limit 19 -fno-signed-char -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -target-feature +outline-atomics -target-feature -fmv -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o - -x c++ /dev/null
+clang -cc1 version 20.1.8 based upon LLVM 20.1.8 default target aarch64-unknown-linux-gnu
+ignoring nonexistent directory "$TOOLCHAIN_PREFIX/lib/gcc/aarch64-linux-gnu/12/../../../../aarch64-linux-gnu/include"
+ignoring nonexistent directory "/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ $TOOLCHAIN_PREFIX/lib/gcc/aarch64-linux-gnu/12/../../../../include/c++/12
+ $TOOLCHAIN_PREFIX/lib/gcc/aarch64-linux-gnu/12/../../../../include/aarch64-linux-gnu/c++/12
+ $TOOLCHAIN_PREFIX/lib/gcc/aarch64-linux-gnu/12/../../../../include/c++/12/backward
+ $TOOLCHAIN_PREFIX/lib/llvm-20/lib/clang/20/include
+ /usr/local/include
+ /usr/include/aarch64-linux-gnu
+ /usr/include
+End of search list.
+# 1 "/dev/null"
+# 1 "<built-in>" 1
+# 1 "<built-in>" 3
+# 492 "<built-in>" 3
+# 1 "<command line>" 1
+# 1 "<built-in>" 2
+# 1 "/dev/null" 2
+
