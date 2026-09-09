@@ -1,0 +1,21 @@
+{
+  "old_runtime_sha256": "83f17851edb1b200fe7402b7e49b454f71b3b781590851aa55d47b8ef16c7ee8",
+  "new_tests_sha256": "c9394e573034878cec066df67c0d8ae80425b3f0a9adbf817e82f0c4eed8c1d8",
+  "command": [
+    "clang++",
+    "-std=c++20",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic",
+    "-Werror",
+    "-pthread",
+    "-Iinclude",
+    "tests/runtime_tests.cpp",
+    "$PROJECT/build-cleanup-negative/runtime-before.cpp",
+    "src/cpu_backend.cpp",
+    "-o",
+    "$PROJECT/build-cleanup-negative/old-runtime-tests"
+  ],
+  "exit_code": 1,
+  "scope": "Current host tests linked against the pre-fix runtime; expected rejection of oversized allocation"
+}

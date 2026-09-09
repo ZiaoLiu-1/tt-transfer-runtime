@@ -35,6 +35,12 @@ Ticket Runtime::fence() { return submit(Kind::fence, 0, 0, {}); }
 
 Ticket Runtime::submit(Kind kind, std::size_t offset, std::size_t count, Bytes payload) {
     validate(offset, count);
+    if (payload.capacity() > max_payload) {
+        // A short vector can still own a large allocation. Release excess
+        // capacity before admission so it cannot bypass the payload bound.
+        Bytes compact(payload.begin(), payload.end());
+        payload.swap(compact);
+    }
     auto request = std::make_unique<Request>(Request{kind, offset, count, std::move(payload), {}});
     auto future = request->promise.get_future();
     std::unique_lock lock(mutex_);

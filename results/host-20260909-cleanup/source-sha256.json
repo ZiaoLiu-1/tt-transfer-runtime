@@ -1,0 +1,15 @@
+{
+  "CMakeLists.txt": "97236d61ef067b297b3a768cfe156ae70e6c043d579df934174898cac7a9c293",
+  "benchmarks/cpu_benchmark.cpp": "58b7d36eba064ac60be081c3878a8036a5916ddaa488a2d5640ef6eadd72cb11",
+  "include/tt_transfer/cpu_backend.hpp": "b58381cb5bef115a302f96029c367da7777ec3905fb2a3571b7441656c9a0461",
+  "include/tt_transfer/runtime.hpp": "a0b3c900a33201d9cde17999c91d8033a94d183f957a706af7630a906c38412d",
+  "include/tt_transfer/umd_backend.hpp": "c8f2e2600a4b745ee2f689667e925e1ab775b1e9abef46ef12cf4c4adb92474f",
+  "src/cpu_backend.cpp": "9e799ec33c52f4de937e6dbcf2f2a969e0f2729fcdce07085f82156bcbc55894",
+  "src/demo.cpp": "49463abdf5380d1959f282741615f0794236c0f68884be5f751cb97b018daa5a",
+  "src/runtime.cpp": "e4cd73adf9ff05ef48bccb1c4802ae2d41c93297bd771886b0e7b193b5603cbb",
+  "src/umd_backend.cpp": "55d04d5180df398d1b63e533b5845944a6182132973ce1de41b17e1714fe530e",
+  "tests/__pycache__/test_umd_runner.cpython-314.pyc": "9a2053c792ca8b5321c24019d2aac725033361e95edf9589035fd64cfa135d29",
+  "tests/runtime_tests.cpp": "c9394e573034878cec066df67c0d8ae80425b3f0a9adbf817e82f0c4eed8c1d8",
+  "tests/test_measure_cpu.py": "8812fb47735740f106e65d8137fab4d0002ec7ab8be74656aa305722d4c7f4b5",
+  "tests/test_umd_runner.py": "ac56ce45310013a51c255a0802a091e2529c56e484a8c46fa4834b5fec83791d"
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "script": "scripts/run_umd.py",
+    "old_script_sha256": "8983f3e410ed755573b5ca1d2873521255345b3a5fbaf21a2b4c25eaf6895a04",
+    "current_test": "tests/test_umd_runner.py",
+    "test_sha256": "ac56ce45310013a51c255a0802a091e2529c56e484a8c46fa4834b5fec83791d",
+    "command": [
+      "python3",
+      "$NEGATIVE_TREE/tests/test_umd_runner.py"
+    ],
+    "exit_code": 1,
+    "scope": "Current synthetic regressions against the pre-fix script; no benchmark or UMD execution"
+  },
+  {
+    "script": "scripts/measure_cpu.py",
+    "old_script_sha256": "234881fa78cd017e0d2b5a07a0e327a34dbaaad59c09ff97eb73c5c03d28b9bb",
+    "current_test": "tests/test_measure_cpu.py",
+    "test_sha256": "8812fb47735740f106e65d8137fab4d0002ec7ab8be74656aa305722d4c7f4b5",
+    "command": [
+      "python3",
+      "$NEGATIVE_TREE/tests/test_measure_cpu.py"
+    ],
+    "exit_code": 1,
+    "scope": "Current synthetic regressions against the pre-fix script; no benchmark or UMD execution"
+  }
+]

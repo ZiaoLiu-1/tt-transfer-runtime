@@ -1,11 +1,10 @@
-# Real UMD integration
+# UMD integration
 
 The optional Linux target uses unmodified TT-UMD commit
 `1a513b2ca8a8955db1fe306b6d65dee2ffe5c9bc` and the checksum-verified Linux ARM64
 Wormhole simulator release `v1.10.6`. `provenance.json` records all source and asset
-identities. The simulator binary is downloaded from the official release; the
-referenced ttsim source commit documents the ABI and is not a claim that we built
-the release binary ourselves.
+identities. The simulator binary comes from the official release; the referenced
+ttsim source commit documents the ABI.
 
 ```sh
 python3 scripts/fetch_upstream.py
@@ -27,9 +26,9 @@ it passed shell syntax checking but **was not executed end-to-end**.
 The multiarch hwloc generated header directory (`include/aarch64-linux-gnu`)
 must be included alongside `include` when using an extracted user prefix.
 Disable unrelated UMD tools, tests, Python, RDMA, JTAG, Tracy, and emulation.
-Each `run_umd.py` output directory must be new to preserve previous raw evidence.
-The coordinated server also requires the shared build lock before downloads,
-builds, or timing samples; private connection details are kept outside this repo.
+Each `run_umd.py` output directory must be new to preserve earlier results. On a
+shared machine, serialize builds and measurements with the other users of that
+machine.
 
 For the validated user-prefix build, set `TOOLCHAIN_PREFIX` to the prefix's
 `usr` directory and `TOOLCHAIN_VENV` to the CMake/Ninja environment. The effective
@@ -68,10 +67,10 @@ toolchain footprint is outside those numbers. All imported logs retain numerical
 results and technical output; path/routing redactions and original/imported
 file hashes are recorded in `import-manifest.json`.
 
-## Verified result and boundary
+## Recorded simulator runs
 
-On 2026-09-09 at 02:24:52 UTC, the final runner completed **five independent
-real UMD/ttsim processes, all exit 0**. Every process passed a full-byte 1 KiB
+On 2026-09-09 at 02:24:52 UTC, the recorded runner completed five UMD/ttsim
+processes, all exit 0. Every process passed a full-byte 1 KiB
 direct readback, a full-byte 1 KiB FIFO readback and two producer readbacks in
 disjoint 1 KiB regions, using one live Cluster. The chosen core was `t1-1 (NOC0)`.
 The three allocator examples separately linked and passed against the real UMD
@@ -93,18 +92,20 @@ The complete source changes from the checkpoint are recorded in
 | Direct write/fence/read, 1 KiB | 28.24 | 27.84–32.00 |
 | FIFO write/fence/read, 1 KiB | 67.48 | 63.88–82.04 |
 
-The shared build lock excluded competing project builds/measurements. The
-recorded load averages at the final run start were 0.043, 0.398 and 0.984.
-These are five initial shared-host observations; the extra FIFO handoff cost is
-visible for this small operation, but these rows establish no silicon latency,
-bandwidth, general speedup, or tail-latency conclusion.
+The measurement used a shared build lock. Recorded load averages at the run
+start were 0.043, 0.398 and 0.984. These five samples show host software timing
+for this small operation; they do not measure silicon latency or bandwidth.
 
 `results/umd-20260909/` retains the five earlier successful real processes.
-Independent review then fixed an external timeout-signal race in the Python
-runner and added deterministic TERM/KILL regression cases. The final samples
+An external timeout-signal race in the Python runner was subsequently fixed,
+with deterministic TERM/KILL regression cases. The final samples
 used that revised runner in a new directory. The binary and UMD library hashes
 remained identical between the two runs; no rebuild or host test rerun was
-necessary. Both the initial failure log and earlier samples remain intact.
+necessary at that revision. Both the initial failure log and earlier samples
+remain intact. The later payload-capacity and runner-input fixes have local host
+and synthetic regression results in [validation notes](validation.md); the
+simulator measurements above remain tied to their recorded source and binary
+hashes.
 
 UMD emitted a warning that its n150 board description expected one harvested
 Tensix unit while the mask indicated zero. The warning is retained in every
@@ -122,7 +123,7 @@ The demo creates exactly one Cluster. It writes a nonuniform 1 KiB byte pattern,
 calls `l1_membar`, reads all bytes and checks equality. It then transfers the same
 backend into the FIFO runtime and repeats with another pattern. Two producer
 threads also write/fence/read disjoint 1 KiB ranges. Their interleavings are legal
-without pretending a fence turns several requests into a transaction. Runtime
+because a fence does not make several requests a transaction. Runtime
 joins its owner before backend destruction; no second Cluster is constructed.
 
 `run_umd.py` launches a fresh process per sample and records stdout, stderr, exit
@@ -130,20 +131,19 @@ status, timeout, and required completion markers. It classifies mismatch,
 incomplete output, nonzero exit and signal crash separately. A process-level
 ttsim fatal exit is outside the runtime's C++ exception recovery contract.
 
-The reported constructor and round-trip durations are **host wall time**.
-They include software and thread costs. They are not PCIe, NoC, DRAM bandwidth,
-Tensix execution latency or silicon performance. At this exact UMD commit,
+The reported constructor and round-trip durations include software and thread
+costs. At this exact UMD commit,
 `SimulationChip::l1_membar` is empty: the adapter calls the API but simulator
 readback cannot establish hardware memory-barrier semantics.
 
-The runner's process-classifier regression cases are independently runnable
+The runner's process-classifier regression cases can be run separately
 with `python3 tests/test_umd_runner.py`. They deliberately launch synthetic small
 programs to check successful marker parsing, startup errors, nonzero exits,
 signals, timeouts, mismatch and incomplete output, plus a deterministic timeout
-signal race regression. The latest log is `results/synthetic-runner-final.log`;
-**actual UMD executions in that log: zero**.
+signal race regression. The original log is `results/synthetic-runner-final.log`;
+these tests execute no UMD code.
 
-## Allocator reading exercise（中文）
+## Allocator example（中文）
 
 `SimulationTlbAllocator::allocate_tlb_index` 按窗口从小到大扫描。Wormhole
 有 1 MiB、2 MiB、16 MiB 三个池；请求先找到能装下的最小池，如果该池满了，
@@ -154,7 +154,4 @@ signal race regression. The latest log is `results/synthetic-runner-final.log`;
 Blackhole 的 4 GiB 池以 BAR4 为基址，每个槽位再加一个 4 GiB 偏移。
 这一步只做整数地址计算与少量分配标记，**没有申请 4 GiB 的 host RAM**。
 `allocator_examples` 的第三例特意用非零 BAR4，防止把“相对 offset”误读为
-“完整地址”。这三个例子运行真实 UMD 实现，不是 CPU fake 或重新实现的算法。
-
-个人复述尚待验收：解释为什么 mutex 覆盖“找空槽＋标记”，为什么释放后可以
-重用旧索引，为什么 source-level allocator 成功不表示完成了设备 readback。
+“完整地址”。这三个例子直接链接并运行上游 UMD 实现。

@@ -1,0 +1,9 @@
+PASS CPU bytes and untouched guards
+PASS write A/read A/write B/read B
+PASS two producer accepted-sequence oracle
+PASS Q=1 blocks and then progresses
+PASS close drains pending work and wakes submitters
+PASS Nth backend exception completes every accepted request
+PASS invalid requests rejected before backend hooks
+PASS moved input and result lifetime
+FAIL excess write capacity is released: short write releases oversized allocation

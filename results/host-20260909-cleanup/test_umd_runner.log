@@ -1,0 +1,22 @@
+PASS synthetic_runner_case=incomplete_output classification=incomplete_output
+PASS synthetic_runner_case=nonzero_exit classification=nonzero_exit
+PASS synthetic_runner_case=mismatch classification=mismatch
+PASS synthetic_runner_case=timeout classification=timeout
+PASS synthetic_runner_case=signal_crash classification=signal_crash
+PASS synthetic_runner_case=pass classification=pass
+PASS synthetic_runner_case=startup_error classification=startup_error
+PASS synthetic_runner_case=metric-malformed classification=incomplete_output
+PASS synthetic_runner_case=metric-nan classification=incomplete_output
+PASS synthetic_runner_case=metric-infinity classification=incomplete_output
+PASS synthetic_runner_case=metric-overflow classification=incomplete_output
+PASS synthetic_runner_case=metric-negative classification=incomplete_output
+PASS synthetic_runner_case=metric-trailing_junk classification=incomplete_output
+PASS synthetic_runner_case=metric-zero_and_scientific classification=pass
+PASS synthetic_invalid_timeout=nan
+PASS synthetic_invalid_timeout=inf
+PASS synthetic_invalid_timeout=-inf
+PASS synthetic_invalid_timeout=0
+PASS synthetic_invalid_timeout=-1
+PASS synthetic_timeout_exit_before=SIGTERM
+PASS synthetic_timeout_exit_before=SIGKILL
+synthetic_runner_cases_passed=21; actual_umd_executions=0

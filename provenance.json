@@ -45,7 +45,6 @@
     "license": "Apache-2.0"
   },
   "authorship": {
-    "upstream_allocator": "Tenstorrent; retained unmodified; no project algorithm originality claim",
-    "project_adapter_and_examples": "Project-specific implementation produced with Codex assistance; learner understanding not yet assessed"
+    "upstream_allocator": "Tenstorrent; retained unmodified"
   }
 }

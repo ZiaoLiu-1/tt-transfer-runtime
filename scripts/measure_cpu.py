@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the fixed CPU experiment under the workspace's shared atomic mkdir lock."""
+"""Run the fixed CPU experiment while holding an atomic mkdir lock."""
 import argparse
 import datetime
 import hashlib
@@ -35,6 +35,8 @@ try:
         raise ValueError("binary build directory belongs to another source tree")
     if any(p.stat().st_mtime_ns > binary.stat().st_mtime_ns for p in sources):
         raise ValueError("measured sources changed after binary build; rebuild first")
+    if cache_path.stat().st_mtime_ns > binary.stat().st_mtime_ns:
+        raise ValueError("CMake configuration is newer than binary; rebuild cpu_benchmark with --clean-first")
     metadata = {
         "utc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "system": {"os": platform.system(), "release": platform.release(), "machine": platform.machine()},

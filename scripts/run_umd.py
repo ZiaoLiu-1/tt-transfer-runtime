@@ -9,6 +9,7 @@ import csv
 import datetime
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import platform
@@ -19,7 +20,7 @@ import time
 
 EXPECTED = ["PASS direct_readback bytes=1024", "PASS fifo_readback bytes=1024",
             "PASS two_producer_readback bytes_each=1024 disjoint_regions=2"]
-METRIC = re.compile(r"METRIC constructor_us=([\d.e+-]+) direct_roundtrip_us=([\d.e+-]+) fifo_roundtrip_us=([\d.e+-]+)")
+METRIC = re.compile(r"^METRIC constructor_us=(\S+) direct_roundtrip_us=(\S+) fifo_roundtrip_us=(\S+)$", re.MULTILINE)
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -30,6 +31,19 @@ def digest(path):
 def command_output(command, cwd=None):
     result = subprocess.run(command, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=cwd)
     return result.stdout.strip() if result.returncode == 0 else None
+
+
+def parse_metrics(output):
+    match = METRIC.search(output)
+    if not match:
+        return None
+    try:
+        values = [float(value) for value in match.groups()]
+    except ValueError:
+        return None
+    if not all(math.isfinite(value) and value >= 0 for value in values):
+        return None
+    return match.groups()
 
 
 def metadata(args):
@@ -94,8 +108,8 @@ def main():
     parser.add_argument("--repeats", type=int, default=5)
     parser.add_argument("--timeout", type=float, default=60)
     args = parser.parse_args()
-    if not 1 <= args.repeats <= 10 or args.timeout <= 0:
-        parser.error("repeats must be 1..10 and timeout must be positive")
+    if not 1 <= args.repeats <= 10 or not math.isfinite(args.timeout) or args.timeout <= 0:
+        parser.error("repeats must be 1..10 and timeout must be finite and positive")
     args.output.mkdir(parents=True, exist_ok=False)
     metadata(args)
     records = []
@@ -135,7 +149,7 @@ def main():
         elapsed = time.monotonic() - start
         output = prefix.with_suffix(".stdout.log").read_text(errors="replace")
         errors = prefix.with_suffix(".stderr.log").read_text(errors="replace")
-        metrics = METRIC.search(output)
+        metrics = parse_metrics(output)
         if startup_error:
             classification = "startup_error"
         elif timed_out:
@@ -152,9 +166,9 @@ def main():
             classification = "pass"
         record = {"sample": sample, "utc_start": started, "exit_code": code,
                   "classification": classification, "process_wall_seconds": elapsed,
-                  "constructor_us": metrics.group(1) if metrics else "",
-                  "direct_roundtrip_us": metrics.group(2) if metrics else "",
-                  "fifo_roundtrip_us": metrics.group(3) if metrics else ""}
+                  "constructor_us": metrics[0] if metrics else "",
+                  "direct_roundtrip_us": metrics[1] if metrics else "",
+                  "fifo_roundtrip_us": metrics[2] if metrics else ""}
         records.append(record)
         prefix.with_suffix(".json").write_text(json.dumps(record, indent=2) + "\n")
         print(json.dumps(record), flush=True)

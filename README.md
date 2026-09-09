@@ -1,18 +1,23 @@
 # TT Transfer Runtime
 
-A compact C++20 host runtime that serializes transfers from multiple producers through a bounded FIFO and one backend owner. It demonstrates ownership, backpressure, completion, shutdown, and error handling around a byte-addressed scratch region.
+A C++20 host runtime that queues memory reads and writes from multiple threads
+and sends them to a simulated Tenstorrent device through TT-UMD. A bounded FIFO
+feeds one worker thread, so callers can share a backend that requires serialized
+access. Each accepted request returns a future for its result or error.
 
-The CPU path is self-contained. All **11 host contract tests pass** in Release, ASan/UBSan, and TSan. The pinned TT-UMD adapter also built and passed **five real ttsim process runs**, each checking direct, FIFO, and two-producer 1 KiB readbacks. The three examples linking the real upstream allocator passed. This project has no Tenstorrent hardware results.
+The default build uses a CPU byte array and needs no vendor dependencies. The
+optional Linux ARM64 build connects the same queue to TT-UMD and ttsim for L1
+readback on one Wormhole core.
 
 ```text
-Two host producers → mutex/CV FIFO → one owner → CPU byte array
+Producer threads → bounded FIFO → backend owner → CPU byte array
                                               └→ TT-UMD → ttsim
-TT-Metal: higher-level device programming/runtime; outside this build
 ```
 
 ## Build and run
 
-Requires a C++20 compiler, CMake ≥3.25, and threads. The CPU path has no vendor dependency.
+Requires a C++20 compiler, CMake 3.25 or newer, and threads. Run from the repository
+root:
 
 ```sh
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
@@ -21,17 +26,16 @@ ctest --test-dir build --output-on-failure
 ./build/transfer_demo
 ```
 
-If CMake is missing, install tools into an isolated, ignored project environment:
+The demo starts two producers, each writing and reading a distinct 1 KiB region,
+and checks every returned byte. For the vendor build, see
+[UMD setup and integration](docs/umd-integration.md).
 
-```sh
-python3 -m venv .tools
-.tools/bin/pip install cmake==3.31.6 ninja==1.11.1.4
-export PATH="$PWD/.tools/bin:$PATH"
-```
-
-## API and contract
+## Using the queue
 
 ```cpp
+#include "tt_transfer/cpu_backend.hpp"
+#include <utility>
+
 using namespace tt_transfer;
 Runtime runtime(std::make_unique<CpuBackend>(8192), 4);
 Bytes input(1024, std::byte{0x5a});
@@ -44,57 +48,60 @@ Bytes result = read.completion.get();
 runtime.close_and_drain();
 ```
 
-| Operation | Observable contract |
-| --- | --- |
-| `write(offset, Bytes)` | Blocking admission; accepted payload ownership moves to the request. Completion returns an empty byte vector. |
-| `read(offset, count)` | Returns an independent byte vector through a future. It may outlive the runtime. |
-| `fence()` | Completes after earlier accepted requests and the backend barrier hook. It does not make a write/read pair a transaction. |
-| `close_and_drain()` | Rejects new requests, wakes blocked producers, drains accepted requests, and joins without holding the queue mutex. Concurrent calls are safe. |
+Submission blocks when the queue is full. Successful admission assigns a sequence
+number under the queue mutex; the worker executes that order. A queue of capacity
+Q holds at most Q waiting requests and one executing request, with each transfer
+limited to 4096 bytes. Caller-owned arguments, completed results and backend memory
+are outside this bound.
 
-Sequence numbers describe successful acceptance under one mutex. The owner executes that FIFO order. Up to **Q queued + 1 executing** requests are retained, each payload at most **4 KiB**. Caller results/futures, unaccepted arguments, backend memory, and third-party allocations are outside this bound. Reads/writes are checked against immutable backend extent before I/O, using subtraction to avoid address overflow. Zero-byte operations at the end of the region are valid.
+Writes move their byte buffer into the request, copying just the used bytes if
+the vector has reserved more than 4096 bytes. Request bookkeeping and allocator
+overhead are outside the payload limit. Reads return an independent
+buffer that may outlive the runtime. Write and fence futures return an empty
+buffer. A fence calls the backend's barrier after earlier requests have run;
+several producers can still interleave their write/fence/read sequences. Use
+disjoint regions, as the demo does, when those sequences must not overwrite one
+another.
 
-An ordinary backend exception rejects subsequent submissions and finishes the current and pending futures with that exception. Already successful work stays successful. The backend must return or throw for shutdown to finish; destruction must not race callers still using the runtime. Backend callbacks must not call `close_and_drain` on their own owner thread.
+`close_and_drain()` rejects new submissions, wakes blocked producers, finishes
+accepted work and joins the worker. Concurrent close calls are safe. A backend
+exception closes admission and reaches the current and pending futures; earlier
+successful work stays successful. Backend operations must return or throw for
+shutdown to finish. Stop callers before destroying the runtime, and do not call
+close from a backend callback.
 
-## Verification and measurements
+## Tests and measurements
 
-```sh
-cmake -S . -B build-asan -DCMAKE_BUILD_TYPE=Debug -DTT_TRANSFER_SANITIZER=address
-cmake --build build-asan --parallel 2
-ctest --test-dir build-asan --output-on-failure
-cmake -S . -B build-tsan -DCMAKE_BUILD_TYPE=Debug -DTT_TRANSFER_SANITIZER=thread
-cmake --build build-tsan --parallel 2
-ctest --test-dir build-tsan --output-on-failure
-```
+The host tests cover byte order, concurrent producers, blocked admission, draining
+shutdown, failure propagation, range checks and buffer lifetime. Release,
+ASan/UBSan and TSan runs are recorded in [validation notes](docs/validation.md),
+along with commands for repeating them.
 
-The contract tests exercise intermediate byte order, two producers, actual blocked admission, drain, failure, range rejection, buffer lifetime, and the single owner. The test runner prints individual cases; CTest groups them in one executable. Sanitizers cover this project's host code, not an uninstrumented vendor stack.
+The CPU benchmark compares synchronous copies with queued write/fence/read
+round trips. On Apple M2, seven samples of 20,000 checked 1 KiB round trips had
+median total times of 13.30 ms synchronous and 182.06 ms queued. Thread handoff,
+allocation and futures add substantial overhead for these small copies. These
+are host wall-time measurements with ordinary desktop apps running; see the
+[raw samples and environment](results/cpu-final/).
 
-`cpu_benchmark [roundtrips=20000] [repeats=7]` emits raw CSV. Both modes use one producer and identical 1 KiB write/fence/read cycles, checking every byte. Construction and teardown are excluded; FIFO timing includes payload copy, scheduling, future completion, result allocation, and verification. Execution order alternates across repeats. The FIFO may cost more than direct synchronous copies.
+The recorded adapter build passed five ttsim process runs with direct and queued L1
+readbacks. There are no hardware results. The pinned simulator's L1 barrier hook
+is empty, and its n150 harvesting warning limits the result to the selected core.
+This runtime handles byte transfers; kernel execution, DMA scheduling and
+multi-chip coordination are outside its scope.
 
-Use the shared measurement lock when other projects are active:
+## Troubleshooting and further reading
 
-```sh
-python3 scripts/measure_cpu.py --binary build/cpu_benchmark \
-  --lock /path/to/shared/local-measure.lock --output results/my-cpu-run
-```
+- **CMake missing or too old:** the [validation notes](docs/validation.md#local-tools)
+  include an isolated tools setup.
+- **`runtime closed`:** inspect earlier futures for a backend error; create a new
+  runtime to accept more work.
+- **Payload or range error:** keep each operation within 4096 bytes and the
+  backend's scratch extent. A zero-byte operation at the end is valid.
+- **Simulator failure:** inspect the sample's JSON, stdout and stderr in the
+  runner output directory; a partial readback does not count as a pass.
 
-On Apple M2, seven samples of 20,000 checked round trips had median total wall times of **13.30 ms synchronous** and **182.06 ms FIFO**. The additional handoff, allocation, and future overhead dominates these tiny host copies. Normal desktop apps were active; [raw samples and environment](results/cpu-final/) preserve that context. These are host wall-time observations, not PCIe/DRAM/NoC bandwidth or device latency.
-
-## Upstream scope
-
-TT-UMD is pinned to `1a513b2ca8a8955db1fe306b6d65dee2ffe5c9bc`; ttsim reference source is `89bdc5eb726c4f1ebbe597e03b1b9cdf7622c779`, release `v1.10.6`. Upstream allocator behavior is reference work, not an original allocation algorithm. The integration uses descriptor-derived TENSIX coordinates and a bounded scratch region starting at `0x1000`. Direct smoke and FIFO share one live Cluster, with backend destruction after owner join.
-
-The Linux ARM64 build used Ubuntu 22.04.3, Clang 20.1.8 and GCC 12 headers/runtime. [Final simulator samples](results/umd-final/) bind source, binary, library and descriptor hashes; [build logs](results/umd-build/) retain the initial adapter compile error and its correction. The simulator warns that board n150 harvesting metadata is inconsistent. Verification is limited to L1 byte transfers on the selected `t1-1` core; it does not establish full topology correctness.
-
-The simulator API requires serialized calls and can terminate its process on fatal errors. Its fixed-version barrier hooks do not validate silicon barriers. No kernel launch, DMA engine, multi-chip scheduler, or full Metal runtime is implemented here. See [UMD build and source details](docs/umd-integration.md), the [Chinese code tour](docs/explain.md), and [evidence boundaries](docs/resume-evidence.md).
-
-## Troubleshooting
-
-| Symptom | Next step |
-| --- | --- |
-| CMake missing or too old | Use the isolated `.tools` installation above. |
-| `runtime closed` | Create a new runtime; close is terminal. Inspect futures for an earlier backend error. |
-| Payload or range error | Limit each operation to 4096 bytes and keep offset/count inside the backend's scratch size. |
-| Measurement lock already exists | The slot belongs to another project. Retry after it releases the lock; do not delete it. |
-| Simulator crash, timeout, or missing output | Preserve the external runner's result. A linked library or partial stdout is not a successful readback. |
-
-This is a private learning/portfolio repository. Verified engineering behavior and personal understanding are tracked separately.
+The [Chinese code tour](docs/explain.md) follows admission, ownership and shutdown
+through the implementation. [Upstream sources](third_party/README.md) and
+[provenance.json](provenance.json) identify the pinned Tenstorrent dependencies
+and retained Apache-2.0 source files.

@@ -1,0 +1,6 @@
+{
+  "scripts/run_umd.py": "54b7057b72e542e1f4990c1b63cb87ed32d3f223c4b5a13babfb98f4a7892668",
+  "scripts/measure_cpu.py": "45dec039169280a2fe2eb1d1318fcf8ea24082fb0b93c1d843b541d1140a2fb0",
+  "tests/test_umd_runner.py": "ac56ce45310013a51c255a0802a091e2529c56e484a8c46fa4834b5fec83791d",
+  "tests/test_measure_cpu.py": "8812fb47735740f106e65d8137fab4d0002ec7ab8be74656aa305722d4c7f4b5"
+}

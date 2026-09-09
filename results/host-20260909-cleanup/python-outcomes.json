@@ -1,0 +1,18 @@
+[
+  {
+    "command": [
+      "python3",
+      "tests/test_umd_runner.py"
+    ],
+    "exit_code": 0,
+    "test_sha256": "ac56ce45310013a51c255a0802a091e2529c56e484a8c46fa4834b5fec83791d"
+  },
+  {
+    "command": [
+      "python3",
+      "tests/test_measure_cpu.py"
+    ],
+    "exit_code": 0,
+    "test_sha256": "8812fb47735740f106e65d8137fab4d0002ec7ab8be74656aa305722d4c7f4b5"
+  }
+]

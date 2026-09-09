@@ -1,0 +1,17 @@
+.F.
+======================================================================
+FAIL: test_reconfigured_cache_without_rebuild_is_rejected (__main__.MeasurementFreshnessTests.test_reconfigured_cache_without_rebuild_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "$NEGATIVE_TREE/tests/test_measure_cpu.py", line 73, in test_reconfigured_cache_without_rebuild_is_rejected
+    self.exercise("cache")
+    ~~~~~~~~~~~~~^^^^^^^^^
+  File "$NEGATIVE_TREE/tests/test_measure_cpu.py", line 53, in exercise
+    with self.assertRaisesRegex(ValueError, message):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.016s
+
+FAILED (failures=1)

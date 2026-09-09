@@ -1,0 +1,18 @@
+PASS synthetic_runner_case=incomplete_output classification=incomplete_output
+PASS synthetic_runner_case=nonzero_exit classification=nonzero_exit
+PASS synthetic_runner_case=mismatch classification=mismatch
+PASS synthetic_runner_case=timeout classification=timeout
+PASS synthetic_runner_case=signal_crash classification=signal_crash
+PASS synthetic_runner_case=pass classification=pass
+PASS synthetic_runner_case=startup_error classification=startup_error
+Traceback (most recent call last):
+  File "$NEGATIVE_TREE/tests/test_umd_runner.py", line 133, in <module>
+    main()
+    ~~~~^^
+  File "$NEGATIVE_TREE/tests/test_umd_runner.py", line 121, in main
+    record = run_process_case(directory, "metric-" + name, expected,
+                              PASS_MARKERS + f"\nprint({metric!r})")
+  File "$NEGATIVE_TREE/tests/test_umd_runner.py", line 48, in run_process_case
+    assert result.returncode == (0 if expected == "pass" else 1), result
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: CompletedProcess(args=['/opt/homebrew/opt/python@3.14/bin/python3.14', '$NEGATIVE_TREE/scripts/run_umd.py', '/var/folders/rj/k45zyf1908s3twkrvvzwhl1c0000gn/T/tt-runner-synthetic-lbdcx7p6/metric-malformed', '/var/folders/rj/k45zyf1908s3twkrvvzwhl1c0000gn/T/tt-runner-synthetic-lbdcx7p6/missing.so', '--output', '/var/folders/rj/k45zyf1908s3twkrvvzwhl1c0000gn/T/tt-runner-synthetic-lbdcx7p6/metric-malformed-result', '--timeout', '5', '--repeats', '1'], returncode=0, stdout='{"sample": 0, "utc_start": "2026-09-09T23:03:34.804430+00:00", "exit_code": 0, "classification": "pass", "process_wall_seconds": 0.200985709001543, "constructor_us": "12.3", "direct_roundtrip_us": "...", "fifo_roundtrip_us": "--"}\n', stderr='')

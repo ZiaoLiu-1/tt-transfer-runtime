@@ -7,6 +7,7 @@
 #include <barrier>
 #include <chrono>
 #include <condition_variable>
+#include <cstdint>
 #include <functional>
 #include <future>
 #include <iostream>
@@ -79,6 +80,7 @@ struct Observation {
     std::size_t offset;
     std::size_t count;
     std::thread::id owner;
+    std::uintptr_t payload_address;
 };
 
 // The owner blocks at one selected hook. A latch proves it entered the hook;
@@ -124,7 +126,7 @@ public:
     }
     std::size_t size() const noexcept override { return memory_.size(); }
     void write(std::size_t offset, std::span<const std::byte> bytes) override {
-        Hook hook(*probe_, Operation::write, offset, bytes.size());
+        Hook hook(*probe_, Operation::write, offset, bytes.size(), bytes.data());
         memory_.write(offset, bytes);
     }
     Bytes read(std::size_t offset, std::size_t bytes) override {
@@ -139,12 +141,14 @@ private:
     struct Hook {
         Probe& probe;
         const std::size_t number;
-        Hook(Probe& state, Operation operation, std::size_t offset, std::size_t count)
+        Hook(Probe& state, Operation operation, std::size_t offset, std::size_t count,
+             const std::byte* payload = nullptr)
             : probe(state), number(probe.calls.fetch_add(1) + 1) {
             if (probe.active.fetch_add(1) != 0) probe.concurrent.store(true);
             try {
                 std::unique_lock lock(probe.mutex);
-                probe.observations.push_back({operation, offset, count, std::this_thread::get_id()});
+                probe.observations.push_back({operation, offset, count, std::this_thread::get_id(),
+                                              reinterpret_cast<std::uintptr_t>(payload)});
                 if (number == probe.gate_on) {
                     probe.entered.count_down();
                     probe.changed.wait(lock, [&] { return probe.released; });
@@ -434,6 +438,47 @@ void moved_input_and_results_outlive_runtime() {
     require(surviving_future.get() == expected, "future owns read bytes after runtime destruction");
 }
 
+void excess_write_capacity_is_released() {
+    Harness harness(4, std::make_shared<Probe>(1));
+    const auto normal_expected = pattern(8, 17);
+    Bytes normal = normal_expected;
+    normal.reserve(64);
+    const auto normal_address = reinterpret_cast<std::uintptr_t>(normal.data());
+    auto executing = harness.runtime.write(0, std::move(normal));
+    harness.probe->await_entry();
+    require(harness.probe->trace().front().payload_address == normal_address,
+            "normal write transfers its existing allocation without a copy");
+
+    const auto compact_expected = pattern(8, 91);
+    Bytes oversized = compact_expected;
+    oversized.reserve(Runtime::max_payload * 16);
+    const auto oversized_address = reinterpret_cast<std::uintptr_t>(oversized.data());
+    auto pending = harness.runtime.write(16, std::move(oversized));
+    Bytes empty;
+    empty.reserve(Runtime::max_payload * 16);
+    const auto empty_address = reinterpret_cast<std::uintptr_t>(empty.data());
+    auto empty_write = harness.runtime.write(128, std::move(empty));
+    auto read = harness.runtime.read(0, 24);
+    require(harness.runtime.stats().queued == 3, "normalized writes wait behind the executing owner");
+
+    harness.probe->release();
+    harness.runtime.close_and_drain();
+    require(result(executing).empty() && result(pending).empty() && result(empty_write).empty(),
+            "short and empty writes remain valid after capacity normalization");
+    std::array<std::byte, 24> expected{};
+    std::copy(normal_expected.begin(), normal_expected.end(), expected.begin());
+    std::copy(compact_expected.begin(), compact_expected.end(), expected.begin() + 16);
+    const auto actual = result(read);
+    require(actual.size() == expected.size() && std::equal(actual.begin(), actual.end(), expected.begin()),
+            "queued normalized write preserves bytes and untouched guards");
+    const auto trace = harness.probe->trace();
+    require(trace.size() == 4, "each accepted operation executes once");
+    // Capture addresses as integers while allocations are alive; never access
+    // the released buffers when checking that the backend got new storage.
+    require(trace[1].payload_address != oversized_address, "short write releases oversized allocation");
+    require(trace[2].payload_address != empty_address, "empty write releases oversized allocation");
+}
+
 void fence_hook_and_single_owner() {
     Harness harness(3, std::make_shared<Probe>(2));
     auto write = harness.runtime.write(4, pattern(8, 3));
@@ -494,7 +539,7 @@ void simultaneous_close_is_idempotent() {
 } // namespace
 
 int main() {
-    const std::array<std::pair<const char*, void (*)()>, 11> tests{{
+    const std::array<std::pair<const char*, void (*)()>, 12> tests{{
         {"CPU bytes and untouched guards", cpu_bytes},
         {"write A/read A/write B/read B", intermediate_order},
         {"two producer accepted-sequence oracle", two_producer_sequence_oracle},
@@ -503,6 +548,7 @@ int main() {
         {"Nth backend exception completes every accepted request", ordinary_failure_finishes_every_accepted_request},
         {"invalid requests rejected before backend hooks", invalid_requests_never_reach_backend},
         {"moved input and result lifetime", moved_input_and_results_outlive_runtime},
+        {"excess write capacity is released", excess_write_capacity_is_released},
         {"fence completion hook and single owner", fence_hook_and_single_owner},
         {"malformed backend read fails queue", malformed_backend_read_fails_queue},
         {"simultaneous close is idempotent", simultaneous_close_is_idempotent},
