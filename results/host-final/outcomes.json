@@ -1,0 +1,131 @@
+[
+  {
+    "mode": "release",
+    "stage": "configure",
+    "utc": "2026-09-09T01:27:15.380319+00:00",
+    "command": [
+      "$PROJECT/.tools/bin/cmake",
+      "-S",
+      "$PROJECT",
+      "-B",
+      "$PROJECT/build",
+      "-DCMAKE_BUILD_TYPE=Release",
+      "-DTT_TRANSFER_SANITIZER="
+    ],
+    "exit_code": 0,
+    "status": "pass"
+  },
+  {
+    "mode": "release",
+    "stage": "build",
+    "utc": "2026-09-09T01:27:15.694380+00:00",
+    "command": [
+      "$PROJECT/.tools/bin/cmake",
+      "--build",
+      "$PROJECT/build",
+      "--parallel",
+      "2"
+    ],
+    "exit_code": 0,
+    "status": "pass"
+  },
+  {
+    "mode": "release",
+    "stage": "test",
+    "utc": "2026-09-09T01:27:19.481307+00:00",
+    "command": [
+      "$PROJECT/.tools/bin/ctest",
+      "--test-dir",
+      "$PROJECT/build",
+      "--verbose"
+    ],
+    "exit_code": 0,
+    "status": "pass"
+  },
+  {
+    "mode": "asan",
+    "stage": "configure",
+    "utc": "2026-09-09T01:27:19.967125+00:00",
+    "command": [
+      "$PROJECT/.tools/bin/cmake",
+      "-S",
+      "$PROJECT",
+      "-B",
+      "$PROJECT/build-asan",
+      "-DCMAKE_BUILD_TYPE=Debug",
+      "-DTT_TRANSFER_SANITIZER=address"
+    ],
+    "exit_code": 0,
+    "status": "pass"
+  },
+  {
+    "mode": "asan",
+    "stage": "build",
+    "utc": "2026-09-09T01:27:20.281811+00:00",
+    "command": [
+      "$PROJECT/.tools/bin/cmake",
+      "--build",
+      "$PROJECT/build-asan",
+      "--parallel",
+      "2"
+    ],
+    "exit_code": 0,
+    "status": "pass"
+  },
+  {
+    "mode": "asan",
+    "stage": "test",
+    "utc": "2026-09-09T01:27:22.776868+00:00",
+    "command": [
+      "$PROJECT/.tools/bin/ctest",
+      "--test-dir",
+      "$PROJECT/build-asan",
+      "--verbose"
+    ],
+    "exit_code": 0,
+    "status": "pass"
+  },
+  {
+    "mode": "tsan",
+    "stage": "configure",
+    "utc": "2026-09-09T01:27:23.371926+00:00",
+    "command": [
+      "$PROJECT/.tools/bin/cmake",
+      "-S",
+      "$PROJECT",
+      "-B",
+      "$PROJECT/build-tsan",
+      "-DCMAKE_BUILD_TYPE=Debug",
+      "-DTT_TRANSFER_SANITIZER=thread"
+    ],
+    "exit_code": 0,
+    "status": "pass"
+  },
+  {
+    "mode": "tsan",
+    "stage": "build",
+    "utc": "2026-09-09T01:27:23.573403+00:00",
+    "command": [
+      "$PROJECT/.tools/bin/cmake",
+      "--build",
+      "$PROJECT/build-tsan",
+      "--parallel",
+      "2"
+    ],
+    "exit_code": 0,
+    "status": "pass"
+  },
+  {
+    "mode": "tsan",
+    "stage": "test",
+    "utc": "2026-09-09T01:27:25.447992+00:00",
+    "command": [
+      "$PROJECT/.tools/bin/ctest",
+      "--test-dir",
+      "$PROJECT/build-tsan",
+      "--verbose"
+    ],
+    "exit_code": 0,
+    "status": "pass"
+  }
+]

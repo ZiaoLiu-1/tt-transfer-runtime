@@ -1,0 +1,12 @@
+{
+  "CMakeLists.txt": "97236d61ef067b297b3a768cfe156ae70e6c043d579df934174898cac7a9c293",
+  "benchmarks/cpu_benchmark.cpp": "58b7d36eba064ac60be081c3878a8036a5916ddaa488a2d5640ef6eadd72cb11",
+  "include/tt_transfer/cpu_backend.hpp": "b58381cb5bef115a302f96029c367da7777ec3905fb2a3571b7441656c9a0461",
+  "include/tt_transfer/runtime.hpp": "a0b3c900a33201d9cde17999c91d8033a94d183f957a706af7630a906c38412d",
+  "include/tt_transfer/umd_backend.hpp": "c8f2e2600a4b745ee2f689667e925e1ab775b1e9abef46ef12cf4c4adb92474f",
+  "src/cpu_backend.cpp": "9e799ec33c52f4de937e6dbcf2f2a969e0f2729fcdce07085f82156bcbc55894",
+  "src/demo.cpp": "49463abdf5380d1959f282741615f0794236c0f68884be5f751cb97b018daa5a",
+  "src/runtime.cpp": "83f17851edb1b200fe7402b7e49b454f71b3b781590851aa55d47b8ef16c7ee8",
+  "src/umd_backend.cpp": "72b73c013128bc7c28ad5557fcd358439aec521ca9539a5d204cb964617bebfb",
+  "tests/runtime_tests.cpp": "75dc0da671107e7d3cb8c17ba4c8a2af1e4ef5c52fd5a9ec2587dc24b3926a07"
+}

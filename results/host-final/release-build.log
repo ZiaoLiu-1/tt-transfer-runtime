@@ -1,0 +1,6 @@
+[ 33%] Built target tt_transfer
+[ 66%] Building CXX object CMakeFiles/runtime_tests.dir/tests/runtime_tests.cpp.o
+[ 66%] Built target transfer_demo
+[ 88%] Built target cpu_benchmark
+[100%] Linking CXX executable runtime_tests
+[100%] Built target runtime_tests

@@ -1,0 +1,33 @@
+Internal ctest changing into directory: /Users/liuziao/Desktop/Ziao Liu Life/projects/tt-transfer-runtime/build-asan
+UpdateCTestConfiguration  from :/Users/liuziao/Desktop/Ziao Liu Life/projects/tt-transfer-runtime/build-asan/DartConfiguration.tcl
+UpdateCTestConfiguration  from :/Users/liuziao/Desktop/Ziao Liu Life/projects/tt-transfer-runtime/build-asan/DartConfiguration.tcl
+Test project /Users/liuziao/Desktop/Ziao Liu Life/projects/tt-transfer-runtime/build-asan
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+    Start 1: runtime_contract
+
+1: Test command: /Users/liuziao/Desktop/Ziao\ Liu\ Life/projects/tt-transfer-runtime/build-asan/runtime_tests
+1: Working Directory: /Users/liuziao/Desktop/Ziao Liu Life/projects/tt-transfer-runtime/build-asan
+1: Test timeout computed to be: 30
+1: PASS CPU bytes and untouched guards
+1: PASS write A/read A/write B/read B
+1: PASS two producer accepted-sequence oracle
+1: PASS Q=1 blocks and then progresses
+1: PASS close drains pending work and wakes submitters
+1: PASS Nth backend exception completes every accepted request
+1: PASS invalid requests rejected before backend hooks
+1: PASS moved input and result lifetime
+1: PASS fence completion hook and single owner
+1: PASS malformed backend read fails queue
+1: PASS simultaneous close is idempotent
+1: RESULT 11/11 passed
+1/1 Test #1: runtime_contract .................   Passed    0.42 sec
+
+100% tests passed, 0 tests failed out of 1
+
+Total Test time (real) =   0.42 sec

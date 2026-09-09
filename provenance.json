@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "umd": {
+    "repository": "https://github.com/tenstorrent/tt-umd",
+    "commit": "1a513b2ca8a8955db1fe306b6d65dee2ffe5c9bc",
+    "license": "Apache-2.0",
+    "integration": "Unmodified upstream library via add_subdirectory; project allocator executable links the real implementation",
+    "retained_source": [
+      {
+        "upstream_path": "device/chip_helpers/simulation_tlb_allocator.cpp",
+        "local_path": "third_party/upstream-source/simulation_tlb_allocator.cpp",
+        "sha256": "279b8b307191eb7a5228de312778c4f41f4c2fec28bf6adf931a409dd0ee1398"
+      },
+      {
+        "upstream_path": "device/api/umd/device/chip_helpers/simulation_tlb_allocator.hpp",
+        "local_path": "third_party/upstream-source/simulation_tlb_allocator.hpp",
+        "sha256": "c19d9026594a89f00f2adb2d9d79d340989967260bf64f4659e0cb4c42159192"
+      },
+      {
+        "upstream_path": "LICENSE",
+        "local_path": "third_party/upstream-source/LICENSE",
+        "sha256": "c79d4275851ea4e491ef29e27b20252095afb6c89609066d4472c17aa5e5f24b"
+      }
+    ],
+    "patches": []
+  },
+  "ttsim": {
+    "repository": "https://github.com/tenstorrent/ttsim",
+    "source_reference_commit": "89bdc5eb726c4f1ebbe597e03b1b9cdf7622c779",
+    "release": "v1.10.6",
+    "asset": "libttsim_wh_aarch64.so",
+    "asset_bytes": 198664,
+    "asset_url": "https://github.com/tenstorrent/ttsim/releases/download/v1.10.6/libttsim_wh_aarch64.so",
+    "asset_sha256": "d38142c9d94526a5d6b48e5c0711efd718ffaed9270150c5556da0de788214ae",
+    "license": "Apache-2.0",
+    "scope": "Linux aarch64 single-chip Wormhole; downloaded release binary, not a source build"
+  },
+  "descriptor": {
+    "repository": "https://github.com/tenstorrent/tt-metal",
+    "commit": "89e1256c982a5b4739d173bcc446c8c748a44b40",
+    "upstream_path": "tt_metal/soc_descriptors/wormhole_b0_80_arch.yaml",
+    "local_path": "third_party/upstream-source/wormhole_b0_80_arch.yaml",
+    "runtime_name": "soc_descriptor.yaml",
+    "sha256": "24fd3dfae80435a7d9113e255d6d6af9cdf83f6ae3b1c385e1d48a24795ccf49",
+    "license": "Apache-2.0"
+  },
+  "authorship": {
+    "upstream_allocator": "Tenstorrent; retained unmodified; no project algorithm originality claim",
+    "project_adapter_and_examples": "Project-specific implementation produced with Codex assistance; learner understanding not yet assessed"
+  }
+}

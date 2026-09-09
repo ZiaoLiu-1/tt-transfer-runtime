@@ -1,0 +1,53 @@
+{
+  "utc": "2026-09-09T01:27:46.266910+00:00",
+  "system": {
+    "os": "Darwin",
+    "release": "24.5.0",
+    "machine": "arm64"
+  },
+  "cpu_count": 8,
+  "load_before": [
+    4.9140625,
+    4.4794921875,
+    3.6279296875
+  ],
+  "compiler": "Apple clang version 17.0.0 (clang-1700.0.13.5)",
+  "cmake": {
+    "CMAKE_BUILD_TYPE": "Release",
+    "CMAKE_CXX_FLAGS": "",
+    "CMAKE_CXX_FLAGS_DEBUG": "-g",
+    "CMAKE_CXX_FLAGS_MINSIZEREL": "-Os -DNDEBUG",
+    "CMAKE_CXX_FLAGS_RELEASE": "-O3 -DNDEBUG",
+    "CMAKE_CXX_FLAGS_RELWITHDEBINFO": "-O2 -g -DNDEBUG",
+    "TT_TRANSFER_SANITIZER": "",
+    "CMAKE_CXX_FLAGS-ADVANCED": "1",
+    "CMAKE_CXX_FLAGS_DEBUG-ADVANCED": "1",
+    "CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED": "1",
+    "CMAKE_CXX_FLAGS_RELEASE-ADVANCED": "1",
+    "CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED": "1"
+  },
+  "binary_sha256": "412c5bd625b66186808af8e461ff06ba01666336e8a6be1ae5d4b22e13bf445b",
+  "source_sha256": {
+    "src/runtime.cpp": "83f17851edb1b200fe7402b7e49b454f71b3b781590851aa55d47b8ef16c7ee8",
+    "src/cpu_backend.cpp": "9e799ec33c52f4de937e6dbcf2f2a969e0f2729fcdce07085f82156bcbc55894",
+    "benchmarks/cpu_benchmark.cpp": "58b7d36eba064ac60be081c3878a8036a5916ddaa488a2d5640ef6eadd72cb11",
+    "include/tt_transfer/runtime.hpp": "a0b3c900a33201d9cde17999c91d8033a94d183f957a706af7630a906c38412d",
+    "include/tt_transfer/cpu_backend.hpp": "b58381cb5bef115a302f96029c367da7777ec3905fb2a3571b7441656c9a0461",
+    "CMakeLists.txt": "97236d61ef067b297b3a768cfe156ae70e6c043d579df934174898cac7a9c293"
+  },
+  "command": [
+    "cpu_benchmark",
+    "20000",
+    "7"
+  ],
+  "claim_scope": "CPU host wall time only; no device/PCIe/DRAM/NoC performance",
+  "status": "passed",
+  "cpu_model": "Apple M2",
+  "returncode": 0,
+  "load_after": [
+    4.7607421875,
+    4.45458984375,
+    3.6240234375
+  ],
+  "coordination": "Shared atomic mkdir measurement lock held. Simulation task explicitly paused compiles; process inventory immediately before run showed no clang/cc1/ninja/cmake/g++ processes. Normal desktop applications remained active; exploratory host observation only."
+}
